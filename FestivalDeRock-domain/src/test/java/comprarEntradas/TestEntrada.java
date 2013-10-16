@@ -1,7 +1,22 @@
 package comprarEntradas;
 
 import static org.junit.Assert.*;
+
 import org.junit.*;
+
+import comprarEntradas.domain.Banda;
+import comprarEntradas.domain.Categoria;
+import comprarEntradas.domain.Dama;
+import comprarEntradas.domain.Descuento;
+import comprarEntradas.domain.Entrada;
+import comprarEntradas.domain.Jubilado;
+import comprarEntradas.domain.Mayor18;
+import comprarEntradas.domain.Menor12;
+import comprarEntradas.domain.Menor18;
+import comprarEntradas.domain.Noche;
+import comprarEntradas.domain.Sistema;
+import comprarEntradas.domain.Ubicacion;
+
 import java.util.*;
 import java.text.ParseException;
 import java.util.ArrayList;

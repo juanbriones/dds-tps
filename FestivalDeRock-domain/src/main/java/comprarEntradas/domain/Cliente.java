@@ -1,4 +1,4 @@
-package comprarEntradas;
+package comprarEntradas.domain;
 
 import java.util.ArrayList;
 import java.util.Collection;

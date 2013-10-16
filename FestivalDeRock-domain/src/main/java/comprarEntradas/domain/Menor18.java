@@ -1,4 +1,4 @@
-package comprarEntradas;
+package comprarEntradas.domain;
 
 //menor de 18 y mayor de 12
 public class Menor18 extends Cliente {

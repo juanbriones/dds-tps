@@ -1,4 +1,4 @@
-package comprarEntradas;
+package comprarEntradas.domain;
 
 public class TarjetaCredito {
 	
