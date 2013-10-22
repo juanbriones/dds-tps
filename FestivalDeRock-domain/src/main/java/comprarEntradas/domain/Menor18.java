@@ -9,13 +9,13 @@ public class Menor18 extends Cliente {
 	@Override
 	public int calcularDescuentoCliente(Entrada entrada)
 	{
-		if (entrada.obtenerPrecio() > 100)
+		if (entrada.getPrecio() > 100)
 		{
-			return entrada.obtenerPrecio() * porcentaje / 100;
+			return entrada.getPrecio() * porcentaje / 100;
 		}
 		else
 		{
-			if (entrada.obtenerPrecio() <= 100 && entrada.obtenerPrecio() > 50)
+			if (entrada.getPrecio() <= 100 && entrada.getPrecio() > 50)
 			{
 				return 10;
 			}

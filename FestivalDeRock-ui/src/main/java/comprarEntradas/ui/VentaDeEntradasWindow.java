@@ -16,17 +16,19 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.commons.utils.Observable;
 import org.uqbar.edu.paiu.examples.celulares.domain.Celular;
 
 import comprarEntradas.domain.Entrada;
-import comprarEntradas.domain.Ubicacion;
+
 
 //Ventana de búsqueda y selección de entradas.
 
-public class VentaDeEntradasWindow extends SimpleWindow<VentaDeEntradas> {
+@Observable
+public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 
 	public VentaDeEntradasWindow(WindowOwner parent) {
-		super(parent, new VentaDeEntradas());
+		super(parent, new BuscadorEntrada());
 		this.getModelObject().search();
 	}
 	

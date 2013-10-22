@@ -36,7 +36,7 @@ public class Descuento {
 		
 		if (this.diferenciaEnDias(entrada.getNoche().getFechaInicio(), fechaVenta) > 30)
 		{
-			descuentoAnticipada = entrada.obtenerPrecio() * porcentajeAnticipada / 100; 
+			descuentoAnticipada = entrada.getPrecio() * porcentajeAnticipada / 100; 
 		}
 		
 		return descuentoCliente + descuentoAnticipada;

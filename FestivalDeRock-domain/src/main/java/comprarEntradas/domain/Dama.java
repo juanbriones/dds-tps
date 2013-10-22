@@ -28,7 +28,7 @@ public class Dama extends Cliente {
 		
 		if ((cantEntradasDamas / entrada.getNoche().getEntradas().size()) < porcentajeEntradas)
 		{
-			return entrada.obtenerPrecio() * porcentaje / 100;
+			return entrada.getPrecio() * porcentaje / 100;
 		}
 		else
 		{

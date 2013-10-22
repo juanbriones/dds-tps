@@ -124,7 +124,7 @@ public class Sistema {
 			{
 				entradaAux = nocheAux.buscarEntradaPorUbicacion(entrada.getUbicacion());
 				
-				recargo = entradaAux.obtenerPrecio() * 50 / 100;
+				recargo = entradaAux.getPrecio() * 50 / 100;
 				precioFinal += calcularPrecioFinal(cliente, entradaAux) + recargo;
 				
 				if (tipoPago == "Tarjeta")
@@ -155,7 +155,7 @@ public class Sistema {
 	
 	private int calcularPrecioFinal(Cliente cliente, Entrada entrada)
 	{
-		int precioTotal = entrada.obtenerPrecio();
+		int precioTotal = entrada.getPrecio();
 		int descuentoTotal = descuento.calcularDescuentoTotal(cliente, entrada, fecha);
 		int precioFinal = precioTotal - descuentoTotal;
 		

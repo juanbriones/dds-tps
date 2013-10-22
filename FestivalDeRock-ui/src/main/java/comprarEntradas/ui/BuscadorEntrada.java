@@ -4,13 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
-import org.uqbar.edu.paiu.examples.celulares.dao.RepositorioCelulares;
-import org.uqbar.edu.paiu.examples.celulares.domain.Celular;
 
+import comprarEntradas.repositorio.RepositorioEntradas;
 import comprarEntradas.Entrada;
-import comprarEntradas.ui.*;
 
-public class VentaDeEntradas implements Serializable {
+@Observable
+public class BuscadorEntrada implements Serializable {
 	
 	//private int noche
 	private char sector;

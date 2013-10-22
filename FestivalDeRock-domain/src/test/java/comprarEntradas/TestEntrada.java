@@ -130,7 +130,7 @@ public class TestEntrada {
  	@Test
 	public void testObtenerPrecio() throws ParseException
  	{
-		assertTrue(entrada1.obtenerPrecio() == 250);
+		assertTrue(entrada1.getPrecio() == 250);
 	}
 
  	

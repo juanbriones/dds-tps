@@ -8,6 +8,6 @@ public class Jubilado extends Cliente{
 	@Override
 	public int calcularDescuentoCliente(Entrada entrada)
 	{
-		return entrada.obtenerPrecio() * porcentaje / 100;
+		return entrada.getPrecio() * porcentaje / 100;
 	}	
 }

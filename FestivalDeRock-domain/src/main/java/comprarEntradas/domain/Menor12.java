@@ -16,11 +16,11 @@ public class Menor12 extends Cliente {
 	{
 		if (this.acompaniado)
 		{
-			return entrada.obtenerPrecio() * porcentaje / 100;
+			return entrada.getPrecio() * porcentaje / 100;
 		}
 		else
 		{
-			return entrada.obtenerPrecio();
+			return entrada.getPrecio();
 		}
 	}
 }

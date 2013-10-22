@@ -1,5 +1,8 @@
 package comprarEntradas.domain;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Entrada {
 	
 	private int idEntrada;
@@ -11,6 +14,10 @@ public class Entrada {
 	private Noche noche;
 	private Ubicacion ubicacion;
 	
+	
+	public Entrada() {
+		
+	}
 	
     public Entrada(int idEntrada, boolean vip, Ubicacion ubicacion, Noche noche) {
 		this.idEntrada = idEntrada;
@@ -111,20 +118,29 @@ public class Entrada {
 	}
 	
 
-	public void estasVendida(Cliente cliente, int fechaVenta) 
-	{
+	public void estasVendida(Cliente cliente, int fechaVenta) {
 		this.vendida = true;
 		this.cliente = cliente;
 		this.fechaVenta = fechaVenta;
     }
 	
 	
-	public int obtenerPrecio() 
-	{		
+	public int getPrecio() {		
 		int precioExtra = noche.precioExtra();
 	    int precioTotal = this.precioBase + precioExtra;
 	    
 	    return precioTotal;
 	}
 	
+	public char getSector(){
+		return this.getUbicacion().getSector();
+	}
+	
+	public int getFila(){
+		return this.getUbicacion().getFila();
+	}
+	
+	public int getButaca(){
+		return this.getUbicacion().getButaca();
+	}
 }

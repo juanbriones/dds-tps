@@ -26,13 +26,13 @@ public class Ubicacion {
 	}
 
 	
-	public int getNroFila() {
+	public int getFila() {
 		return fila;
 	}
 
 	
-	public void setNroFila(int nroFila) {
-		this.fila = nroFila;
+	public void setFila(int fila) {
+		this.fila = fila;
 	}
 
 	
