@@ -64,10 +64,10 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		new TextBox(searchFormPanel).bindValueToProperty("sector");
 
 		new Label(searchFormPanel).setText("Fila").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).bindValueToProperty("fila");
+		new TextBox(searchFormPanel).bindValueToProperty("sector");
 		
 		new Label(searchFormPanel).setText("Butaca").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).bindValueToProperty("butaca");
+		new TextBox(searchFormPanel).bindValueToProperty("sector");
 	}
 	
 	//Acciones asociadas de la pantalla principal.
@@ -100,6 +100,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		table.setHeigth(200);
 		table.setWidth(450);
 
+		//TODO Revisar
 		table.bindItemsToProperty("resultados");
 		table.bindValueToProperty("entradaSeleccionada");
 
@@ -127,7 +128,30 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		Column<Entrada> modeloColumn = new Column<Entrada>(table);
 		modeloColumn.setTitle("Precio");
 		modeloColumn.setFixedSize(50);
+		//TODO Revisar
 		modeloColumn.bindContentsToProperty("precio");
 	
+	}
+	
+	protected void createGridActions(Panel mainPanel) {
+		Panel actionsPanel = new Panel(mainPanel);
+		actionsPanel.setLayout(new HorizontalLayout());
+
+		/*
+		Button edit = new Button(actionsPanel);
+		edit.setCaption("Editar");
+		edit.onClick(new MessageSend(this, "modificarCelular"));
+
+		Button remove = new Button(actionsPanel);
+		remove.setCaption("Borrar");
+		remove.onClick(new MessageSend(this.getModelObject(), "eliminarCelularSeleccionado"));
+		*/
+
+		// Deshabilitar los botones si no hay ningún elemento seleccionado en la grilla.
+		/*
+		NotNullObservable elementSelected = new NotNullObservable("celularSeleccionado");
+		remove.bindEnabled(elementSelected);
+		edit.bindEnabled(elementSelected);
+		*/
 	}
 }
