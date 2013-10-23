@@ -11,7 +11,6 @@ import comprarEntradas.Entrada;
 @Observable
 public class BuscadorEntrada implements Serializable {
 	
-	//private int noche
 	private char sector;
     private int fila;
     private int butaca;
