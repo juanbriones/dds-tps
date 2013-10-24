@@ -39,7 +39,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	
 	@Override
 	protected void createMainTemplate(Panel mainPanel) {
-		this.setTitle("Selección de Entradas");
+		this.setTitle("Festival De Rock - Venta de Entradas");
 		this.setTaskDescription("Ingrese los parámetros de búsqueda");
 
 		super.createMainTemplate(mainPanel);
@@ -57,16 +57,16 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		Panel searchFormPanel = new Panel(mainPanel);
-		searchFormPanel.setLayout(new ColumnLayout(3));
+		searchFormPanel.setLayout(new ColumnLayout(2));
 
 		new Label(searchFormPanel).setText("Sector").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).bindValueToProperty("sector");
+		new TextBox(searchFormPanel).setWidth(400).bindValueToProperty("sector");
 
 		new Label(searchFormPanel).setText("Fila").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).bindValueToProperty("fila");
+		new TextBox(searchFormPanel).setWidth(400).bindValueToProperty("fila");
 		
 		new Label(searchFormPanel).setText("Butaca").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).bindValueToProperty("butaca");
+		new TextBox(searchFormPanel).setWidth(400).bindValueToProperty("butaca");
 	}
 	
 	//Acciones asociadas de la pantalla principal.
@@ -96,9 +96,8 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	
 	protected void createResultsGrid(Panel mainPanel) {
 		Table<Entrada> table = new Table<Entrada>(mainPanel, Entrada.class);
-		table.setHeigth(200);
-		table.setWidth(450);
-
+		table.setHeigth(250);
+		table.setWidth(500);
 		table.bindItemsToProperty("resultados");
 		table.bindValueToProperty("entradaSeleccionada");
 
@@ -115,17 +114,56 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		
 		new Column<Entrada>(table) //
 		.setTitle("Fila")
-		.setFixedSize(50)
+		.setFixedSize(100)
 		.bindContentsToProperty("fila");
 		
 		new Column<Entrada>(table) //
 		.setTitle("Butaca")
-		.setFixedSize(50)
+		.setFixedSize(100)
 		.bindContentsToProperty("butaca");
 	
 		Column<Entrada> modeloColumn = new Column<Entrada>(table);
 		modeloColumn.setTitle("Precio");
-		modeloColumn.setFixedSize(50);
-		modeloColumn.bindContentsToProperty("precio");	
+
+		modeloColumn.setFixedSize(200);
+		modeloColumn.bindContentsToProperty("precio");
 	}
+	
+	protected void createGridActions(Panel mainPanel) {
+		Panel actionsPanel = new Panel(mainPanel);
+		actionsPanel.setLayout(new HorizontalLayout());
+	
+		
+		Button edit = new Button(actionsPanel);
+		edit.setCaption("Editar");
+		edit.onClick(new MessageSend(this, "modificarCelular"));
+	
+		Button remove = new Button(actionsPanel);
+		remove.setCaption("Borrar");
+		remove.onClick(new MessageSend(this.getModelObject(), "eliminarCelularSeleccionado"));
+		
+	
+		// Deshabilita los botones si no hay ningún elemento seleccionado en la grilla.
+		
+		NotNullObservable elementSelected = new NotNullObservable("entradaSeleccionada");
+		remove.bindEnabled(elementSelected);
+		edit.bindEnabled(elementSelected);
+	}
+		
+	// ********************************************************
+	// ** ACCIONES
+	// ********************************************************
+
+	public void crearCelular() {
+		this.openDialog(new CrearCelularWindow(this));
+	}
+
+	public void modificarCelular() {
+		this.openDialog(new EditarCelularWindow(this, this.getModelObject().getCelularSeleccionado()));
+	}
+
+	protected void openDialog(Dialog<?> dialog) {
+		dialog.onAccept(new MessageSend(this.getModelObject(), "search"));
+		dialog.open();
+	}	
 }

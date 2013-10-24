@@ -6,71 +6,74 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 
 import comprarEntradas.repositorio.RepositorioEntradas;
-import comprarEntradas.Entrada;
+import comprarEntradas.domain.Entrada;
 
 
 @Observable
 public class BuscadorEntrada implements Serializable {
 	
-	private char sector;
-    private int fila;
-    private int butaca;
+	private Character sector;
+    private Integer fila;
+    private Integer butaca;
 	private List<Entrada> resultados;
 	private Entrada entradaSeleccionada;
-
+	
 	
 	// ********************************************************
 	// ** ACCIONES
 	// ********************************************************
 
 	public void search() {
-		this.resultados = RepositorioEntradas.getInstance().search(this.sector, this.fila);
+		this.resultados = RepositorioEntradas.getInstance().search(this.sector, this.fila, this.butaca);
 	}
 
 	public void clear() {
 		this.sector = null;
 		this.fila = null;
-	}
-
-	public void eliminarCelularSeleccionado() {
-		RepositorioCelulares.getInstance().delete(this.getCelularSeleccionado());
-		this.search();
-		this.celularSeleccionado = null;
+		this.butaca = null;
 	}
 
 	// ********************************************************
 	// ** ACCESSORS
 	// ********************************************************
 
-	public Integer getNumero() {
-		return this.numero;
+	public Character getSector() {
+		return this.sector;
 	}
 
-	public void setNumero(Integer numero) {
-		this.numero = numero;
+	public void setSector(Character sector) {
+		this.sector = sector;
 	}
 
-	public String getNombre() {
-		return this.nombre;
+	public Integer getFila() {
+		return this.fila;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setFila(Integer fila) {
+		this.fila = fila;
+	}
+	
+	public Integer getButaca() {
+		return this.butaca;
 	}
 
-	public Celular getCelularSeleccionado() {
-		return this.celularSeleccionado;
+	public void setButaca(Integer butaca) {
+		this.butaca = butaca;
 	}
 
-	public void setCelularSeleccionado(Celular celularSeleccionado) {
-		this.celularSeleccionado = celularSeleccionado;
+	public Entrada getEntradaSeleccionada() {
+		return this.entradaSeleccionada;
 	}
 
-	public List<Celular> getResultados() {
+	public void setCelularSeleccionado(Entrada entradaSeleccionada) {
+		this.entradaSeleccionada = entradaSeleccionada;
+	}
+
+	public List<Entrada> getResultados() {
 		return this.resultados;
 	}
 
-	public void setResultados(List<Celular> resultados) {
+	public void setResultados(List<Entrada> resultados) {
 		this.resultados = resultados;
 	}
 }
