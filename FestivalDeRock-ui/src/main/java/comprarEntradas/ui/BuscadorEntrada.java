@@ -30,12 +30,7 @@ public class BuscadorEntrada implements Serializable {
 	{
 		this.sector = null;
 		this.fila = null;
-	}
-
-	public void eliminarCelularSeleccionado() {
-		RepositorioEntradas.getInstance().delete(this.getEntradaSeleccionada());
-		this.search();
-		this.entradaSeleccionada = null;
+		this.butaca = null;
 	}
 
 	// ********************************************************
