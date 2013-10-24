@@ -8,6 +8,7 @@ import org.uqbar.commons.utils.Observable;
 import comprarEntradas.repositorio.RepositorioEntradas;
 import comprarEntradas.Entrada;
 
+
 @Observable
 public class BuscadorEntrada implements Serializable {
 	
@@ -17,17 +18,16 @@ public class BuscadorEntrada implements Serializable {
 	private List<Entrada> resultados;
 	private Entrada entradaSeleccionada;
 
+	
 	// ********************************************************
-	// ** Acciones
+	// ** ACCIONES
 	// ********************************************************
 
-	public void search() 
-	{
+	public void search() {
 		this.resultados = RepositorioEntradas.getInstance().search(this.sector, this.fila);
 	}
 
-	public void clear() 
-	{
+	public void clear() {
 		this.sector = null;
 		this.fila = null;
 	}
@@ -39,7 +39,7 @@ public class BuscadorEntrada implements Serializable {
 	}
 
 	// ********************************************************
-	// ** Accessors
+	// ** ACCESSORS
 	// ********************************************************
 
 	public Integer getNumero() {
@@ -73,5 +73,4 @@ public class BuscadorEntrada implements Serializable {
 	public void setResultados(List<Celular> resultados) {
 		this.resultados = resultados;
 	}
-
 }

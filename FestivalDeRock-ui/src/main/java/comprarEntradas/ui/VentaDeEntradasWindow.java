@@ -52,7 +52,6 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	// * FORMULARIO DE BUSQUEDA
 	// *************************************************************************
 
-	
 	//El panel principal de búsqueda permite filtrar por sector, fila o butaca.
 	
 	@Override
@@ -127,7 +126,6 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		Column<Entrada> modeloColumn = new Column<Entrada>(table);
 		modeloColumn.setTitle("Precio");
 		modeloColumn.setFixedSize(50);
-		modeloColumn.bindContentsToProperty("precio");
-	
+		modeloColumn.bindContentsToProperty("precio");	
 	}
 }

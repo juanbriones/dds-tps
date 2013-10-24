@@ -9,26 +9,23 @@ import org.uqbar.commons.utils.Observable;
 
 import comprarEntradas.domain.*;
 	
+
 @Observable
 public class RepositorioEntradas implements Serializable {
 	private static RepositorioEntradas instance;
 	private List<Entrada> data = new ArrayList<Entrada>();
 
-	public static synchronized RepositorioEntradas getInstance() 
-	{
-		if (instance == null) 
-		{
+	public static synchronized RepositorioEntradas getInstance() {
+		if (instance == null) {
 			instance = new RepositorioEntradas();
 		}
 		return instance;
 	}
 
-	private RepositorioEntradas() 
-	{
+	private RepositorioEntradas() {
 		Banda banda1 = new Banda("Banda 1",new Categoria(1, 50));
 		Banda banda2 = new Banda("Banda 2",new Categoria(2, 100));
 		Banda banda3 = new Banda("Banda 3",new Categoria(3, 150));
-
 		Banda banda4 = new Banda("Banda 4",new Categoria(2, 100));
 		Banda banda5 = new Banda("Banda 5",new Categoria(4, 200));
 
@@ -58,59 +55,53 @@ public class RepositorioEntradas implements Serializable {
 		this.create(new Entrada(7, true, ubicacion3, noche2));
 		this.create(new Entrada(8, true, ubicacion4, noche2));
 	}
-
-	//Altas y Bajas
-
-	public void create(Entrada entrada) 
-	{
+	
+	// ********************************************************
+	// ** ALTAS Y BAJAS
+	// ********************************************************
+	
+	public void create(Entrada entrada) {
 		this.data.add(entrada);
 	}
 
-	public void delete(Entrada entrada) 
-	{
+	public void delete(Entrada entrada) {
 		this.data.remove(entrada);
 	}
 
-	//Búsquedas
-	
-	public List<Entrada> searchSector(Character sector) 
-	{
+	// ********************************************************
+	// ** BUSQUEDAS
+	// ********************************************************
+
+	public List<Entrada> searchSector(Character sector) {
 		return this.search(sector, null, null);
 	}
 
-	public List<Entrada> searchFila(Integer fila) 
-	{
+	public List<Entrada> searchFila(Integer fila) {
 		return this.search(null, fila, null);
 	}
 	
-	public List<Entrada> searchButaca(Integer butaca) 
-	{
+	public List<Entrada> searchButaca(Integer butaca) {
 		return this.search(null, null, butaca);
 	}
 	
-	public List<Entrada> searchSectorFila(Character sector,Integer fila) 
-	{
+	public List<Entrada> searchSectorFila(Character sector,Integer fila) {
 		return this.search(sector, fila, null);
 	}
 	
-	public List<Entrada> searchSectorButaca(Character sector, Integer butaca) 
-	{
+	public List<Entrada> searchSectorButaca(Character sector, Integer butaca) {
 		return this.search(sector, null, butaca);
 	}
 	
-	public List<Entrada> searchFilaButaca(Integer fila, Integer butaca) 
-	{
+	public List<Entrada> searchFilaButaca(Integer fila, Integer butaca) {
 		return this.search(null, fila, butaca);
 	}
 	
-	public List<Entrada> search(Character sector, Integer fila, Integer butaca) 
-	{
+	public List<Entrada> search(Character sector, Integer fila, Integer butaca) {
 		List<Entrada> resultados = new ArrayList<Entrada>();
 
 		for (Entrada entrada : this.data) 
 		{
-			if (match(sector, entrada.getSector()) && match(fila, entrada.getFila()) && match(butaca, entrada.getButaca())) 
-			{
+			if (match(sector, entrada.getSector()) && match(fila, entrada.getFila()) && match(butaca, entrada.getButaca())) {
 				resultados.add(entrada);
 			}
 		}
@@ -118,13 +109,7 @@ public class RepositorioEntradas implements Serializable {
 		return resultados;
 	}
 
-	protected boolean match(Object expectedValue, Object realValue) 
-	{
+	protected boolean match(Object expectedValue, Object realValue) {
 		return expectedValue == null || realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase());
 	}
 }
-
-
-
-
-
