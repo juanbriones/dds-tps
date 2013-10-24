@@ -134,36 +134,36 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		actionsPanel.setLayout(new HorizontalLayout());
 	
 		
-		Button edit = new Button(actionsPanel);
-		edit.setCaption("Editar");
-		edit.onClick(new MessageSend(this, "modificarCelular"));
-	
-		Button remove = new Button(actionsPanel);
-		remove.setCaption("Borrar");
-		remove.onClick(new MessageSend(this.getModelObject(), "eliminarCelularSeleccionado"));
-		
-	
-		// Deshabilita los botones si no hay ningún elemento seleccionado en la grilla.
-		
-		NotNullObservable elementSelected = new NotNullObservable("entradaSeleccionada");
-		remove.bindEnabled(elementSelected);
-		edit.bindEnabled(elementSelected);
+//		Button edit = new Button(actionsPanel);
+//		edit.setCaption("Editar");
+//		edit.onClick(new MessageSend(this, "modificarCelular"));
+//	
+//		Button remove = new Button(actionsPanel);
+//		remove.setCaption("Borrar");
+//		remove.onClick(new MessageSend(this.getModelObject(), "eliminarCelularSeleccionado"));
+//		
+//	
+//		// Deshabilita los botones si no hay ningún elemento seleccionado en la grilla.
+//		
+//		NotNullObservable elementSelected = new NotNullObservable("entradaSeleccionada");
+//		remove.bindEnabled(elementSelected);
+//		edit.bindEnabled(elementSelected);
 	}
 		
 	// ********************************************************
 	// ** ACCIONES
 	// ********************************************************
 
-	public void crearCelular() {
-		this.openDialog(new CrearCelularWindow(this));
-	}
-
-	public void modificarCelular() {
-		this.openDialog(new EditarCelularWindow(this, this.getModelObject().getCelularSeleccionado()));
-	}
-
-	protected void openDialog(Dialog<?> dialog) {
-		dialog.onAccept(new MessageSend(this.getModelObject(), "search"));
-		dialog.open();
-	}	
+//	public void crearCelular() {
+//		this.openDialog(new CrearCelularWindow(this));
+//	}
+//
+//	public void modificarCelular() {
+//		this.openDialog(new EditarCelularWindow(this, this.getModelObject().getCelularSeleccionado()));
+//	}
+//
+//	protected void openDialog(Dialog<?> dialog) {
+//		dialog.onAccept(new MessageSend(this.getModelObject(), "search"));
+//		dialog.open();
+//	}	
 }

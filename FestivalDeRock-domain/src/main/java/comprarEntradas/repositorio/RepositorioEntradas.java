@@ -71,30 +71,6 @@ public class RepositorioEntradas implements Serializable {
 	// ********************************************************
 	// ** BUSQUEDAS
 	// ********************************************************
-
-	public List<Entrada> searchSector(Character sector) {
-		return this.search(sector, null, null);
-	}
-
-	public List<Entrada> searchFila(Integer fila) {
-		return this.search(null, fila, null);
-	}
-	
-	public List<Entrada> searchButaca(Integer butaca) {
-		return this.search(null, null, butaca);
-	}
-	
-	public List<Entrada> searchSectorFila(Character sector,Integer fila) {
-		return this.search(sector, fila, null);
-	}
-	
-	public List<Entrada> searchSectorButaca(Character sector, Integer butaca) {
-		return this.search(sector, null, butaca);
-	}
-	
-	public List<Entrada> searchFilaButaca(Integer fila, Integer butaca) {
-		return this.search(null, fila, butaca);
-	}
 	
 	public List<Entrada> search(Character sector, Integer fila, Integer butaca) {
 		List<Entrada> resultados = new ArrayList<Entrada>();
