@@ -12,6 +12,7 @@ import comprarEntradas.domain.Entrada;
 @Observable
 public class BuscadorEntrada implements Serializable {
 	
+	private Integer nroNoche;
 	private Character sector;
     private Integer fila;
     private Integer butaca;
@@ -24,10 +25,11 @@ public class BuscadorEntrada implements Serializable {
 	// ********************************************************
 
 	public void search() {
-		this.resultados = RepositorioEntradas.getInstance().search(this.sector, this.fila, this.butaca);
+		this.resultados = RepositorioEntradas.getInstance().search(this.nroNoche,this.sector, this.fila, this.butaca);
 	}
 
 	public void clear() {
+		this.nroNoche = null;
 		this.sector = null;
 		this.fila = null;
 		this.butaca = null;
@@ -37,6 +39,14 @@ public class BuscadorEntrada implements Serializable {
 	// ** ACCESSORS
 	// ********************************************************
 
+	public Integer getNroNoche() {
+		return this.nroNoche;
+	}
+
+	public void setNroNoche(Integer nroNoche) {
+		this.nroNoche = nroNoche;
+	}
+	
 	public Character getSector() {
 		return this.sector;
 	}

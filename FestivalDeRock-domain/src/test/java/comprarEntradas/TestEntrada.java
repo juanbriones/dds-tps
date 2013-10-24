@@ -81,8 +81,8 @@ public class TestEntrada {
 		bandas2.add(banda4);
 		bandas2.add(banda5);
 		
-		noche1 = new Noche(bandas1, 20130810);
-		noche2 = new Noche(bandas2, 20130815);
+		noche1 = new Noche(1,bandas1, 20130810);
+		noche2 = new Noche(2,bandas2, 20130815);
 		
 		ubicacion1 = new Ubicacion('A', 1, 1, 100);
 		ubicacion2 = new Ubicacion('B', 2, 2, 200);

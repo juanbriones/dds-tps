@@ -58,15 +58,18 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	protected void createFormPanel(Panel mainPanel) {
 		Panel searchFormPanel = new Panel(mainPanel);
 		searchFormPanel.setLayout(new ColumnLayout(2));
+		
+		new Label(searchFormPanel).setText("Noche").setForeground(Color.BLUE);
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("nroNoche");
 
 		new Label(searchFormPanel).setText("Sector").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(400).bindValueToProperty("sector");
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("sector");
 
 		new Label(searchFormPanel).setText("Fila").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(400).bindValueToProperty("fila");
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("fila");
 		
 		new Label(searchFormPanel).setText("Butaca").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(400).bindValueToProperty("butaca");
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("butaca");
 	}
 	
 	//Acciones asociadas de la pantalla principal.
@@ -97,7 +100,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	protected void createResultsGrid(Panel mainPanel) {
 		Table<Entrada> table = new Table<Entrada>(mainPanel, Entrada.class);
 		table.setHeigth(250);
-		table.setWidth(500);
+		table.setWidth(400);
 		table.bindItemsToProperty("resultados");
 		table.bindValueToProperty("entradaSeleccionada");
 
@@ -108,24 +111,29 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	
 	protected void describeResultsGrid(Table<Entrada> table) {
 		new Column<Entrada>(table) //
+		.setTitle("Noche")
+		.setFixedSize(80)
+		.bindContentsToProperty("nroNoche");
+		
+		new Column<Entrada>(table) //
 			.setTitle("Sector")
-			.setFixedSize(100)
+			.setFixedSize(80)
 			.bindContentsToProperty("sector");
 		
 		new Column<Entrada>(table) //
 		.setTitle("Fila")
-		.setFixedSize(100)
+		.setFixedSize(80)
 		.bindContentsToProperty("fila");
 		
 		new Column<Entrada>(table) //
 		.setTitle("Butaca")
-		.setFixedSize(100)
+		.setFixedSize(80)
 		.bindContentsToProperty("butaca");
 	
 		Column<Entrada> modeloColumn = new Column<Entrada>(table);
 		modeloColumn.setTitle("Precio");
 
-		modeloColumn.setFixedSize(200);
+		modeloColumn.setFixedSize(80);
 		modeloColumn.bindContentsToProperty("precio");
 	}
 	

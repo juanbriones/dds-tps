@@ -38,8 +38,8 @@ public class RepositorioEntradas implements Serializable {
 		bandas2.add(banda4);
 		bandas2.add(banda5);
 
-		Noche noche1 = new Noche(bandas1, 20130810);
-		Noche noche2 = new Noche(bandas2, 20130815);
+		Noche noche1 = new Noche(1,bandas1, 20130810);
+		Noche noche2 = new Noche(2,bandas2, 20130815);
 
 		Ubicacion ubicacion1 = new Ubicacion('A', 1, 1, 100);
 		Ubicacion ubicacion2 = new Ubicacion('B', 2, 2, 200);
@@ -72,12 +72,12 @@ public class RepositorioEntradas implements Serializable {
 	// ** BUSQUEDAS
 	// ********************************************************
 	
-	public List<Entrada> search(Character sector, Integer fila, Integer butaca) {
+	public List<Entrada> search(Integer nroNoche, Character sector, Integer fila, Integer butaca) {
 		List<Entrada> resultados = new ArrayList<Entrada>();
 
 		for (Entrada entrada : this.data) 
 		{
-			if (match(sector, entrada.getSector()) && match(fila, entrada.getFila()) && match(butaca, entrada.getButaca())) {
+			if (match(nroNoche, entrada.getNroNoche()) && match(sector, entrada.getSector()) && match(fila, entrada.getFila()) && match(butaca, entrada.getButaca())) {
 				resultados.add(entrada);
 			}
 		}

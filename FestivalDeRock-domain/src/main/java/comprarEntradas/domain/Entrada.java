@@ -114,15 +114,19 @@ public class Entrada {
 	    return precioTotal;
 	}
 	
-	public char getSector(){
+	public int getNroNoche() {
+		return this.noche.getNroNoche();
+	}
+	
+	public char getSector() {
 		return this.getUbicacion().getSector();
 	}
 	
-	public int getFila(){
+	public int getFila() {
 		return this.getUbicacion().getFila();
 	}
 	
-	public int getButaca(){
+	public int getButaca() {
 		return this.getUbicacion().getButaca();
-	}
+	}	
 }
