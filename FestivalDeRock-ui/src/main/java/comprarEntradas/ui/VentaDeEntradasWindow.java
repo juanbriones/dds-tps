@@ -3,8 +3,6 @@ package comprarEntradas.ui;
 import java.awt.Color;
 
 import org.uqbar.arena.actions.MessageSend;
-import org.uqbar.arena.bindings.NotNullObservable;
-import org.uqbar.arena.bindings.Transformer;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -13,7 +11,6 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
-import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.utils.Observable;
@@ -39,8 +36,8 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	
 	@Override
 	protected void createMainTemplate(Panel mainPanel) {
-		this.setTitle("Festival De Rock - Venta de Entradas");
-		this.setTaskDescription("Ingrese los parámetros de búsqueda");
+		this.setTitle("Festival de Rock - Venta de entradas");
+		this.setTaskDescription("Ingrese los parametros de busqueda");
 
 		super.createMainTemplate(mainPanel);
 
@@ -72,7 +69,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("butaca");
 	}
 	
-	//Acciones asociadas de la pantalla principal.
+	//Acciones asociadas de la pantalla.
 	
 	@Override
 	protected void addActions(Panel actionsPanel) {

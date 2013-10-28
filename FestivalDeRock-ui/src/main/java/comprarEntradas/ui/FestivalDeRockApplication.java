@@ -12,6 +12,6 @@ public class FestivalDeRockApplication extends Application {
 
 	@Override
 	protected Window<?> createMainWindow() {
-		return new VentaDeEntradasWindow(this);
+		return new MenuPrincipalWindow(this);
 	}	
 }
