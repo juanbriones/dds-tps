@@ -107,31 +107,30 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	//Define las columnas de la grilla.
 	
 	protected void describeResultsGrid(Table<Entrada> table) {
-		new Column<Entrada>(table) //
+		new Column<Entrada>(table)
 		.setTitle("Noche")
 		.setFixedSize(80)
 		.bindContentsToProperty("nroNoche");
 		
-		new Column<Entrada>(table) //
+		new Column<Entrada>(table)
 			.setTitle("Sector")
 			.setFixedSize(80)
 			.bindContentsToProperty("sector");
 		
-		new Column<Entrada>(table) //
+		new Column<Entrada>(table)
 		.setTitle("Fila")
 		.setFixedSize(80)
 		.bindContentsToProperty("fila");
 		
-		new Column<Entrada>(table) //
+		new Column<Entrada>(table)
 		.setTitle("Butaca")
 		.setFixedSize(80)
 		.bindContentsToProperty("butaca");
 	
-		Column<Entrada> modeloColumn = new Column<Entrada>(table);
-		modeloColumn.setTitle("Precio");
-
-		modeloColumn.setFixedSize(80);
-		modeloColumn.bindContentsToProperty("precio");
+		new Column<Entrada>(table)
+		.setTitle("Precio")
+		.setFixedSize(80)
+		.bindContentsToProperty("precio");
 	}
 	
 	protected void createGridActions(Panel mainPanel) {

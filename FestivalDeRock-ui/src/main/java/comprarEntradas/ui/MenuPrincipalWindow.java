@@ -6,6 +6,7 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
+import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
 
@@ -38,11 +39,14 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 	protected void addActions(Panel actionsPanel) {
 		new Button(actionsPanel)
 			.setCaption("Vender entrada")
-			.onClick(new MessageSend(this.getModelObject(), "abrirVentanaVender"));
+			.onClick(new MessageSend(this, "abrirVentanaVender"));
 
-		new Button(actionsPanel) //
+		new Button(actionsPanel)
 			.setCaption("Anular entrada")
-			.onClick(new MessageSend(this.getModelObject(), "abrirVentanaAnular"));
-	}
+			.onClick(new MessageSend(this, "abrirVentanaAnular"));
+	}	
 	
+	public void abrirVentanaVender(){
+		new VentaDeEntradasWindow(this).open(); 
+	}
 }
