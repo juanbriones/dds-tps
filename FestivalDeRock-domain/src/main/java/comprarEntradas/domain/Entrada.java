@@ -119,14 +119,26 @@ public class Entrada {
 	}
 	
 	public char getSector() {
-		return this.getUbicacion().getSector();
+		return this.ubicacion.getSector();
 	}
 	
 	public int getFila() {
-		return this.getUbicacion().getFila();
+		return this.ubicacion.getFila();
 	}
 	
 	public int getButaca() {
-		return this.getUbicacion().getButaca();
+		return this.ubicacion.getButaca();
 	}	
+	
+	public void setNombre(char[] nombre) {
+		this.cliente.setNombre(nombre);
+	}
+	
+	public void setApellido(char[] apellido) {
+		this.cliente.setApellido(apellido);
+	}
+	
+	public void setEdad(int edad) {
+		this.cliente.setEdad(edad);
+	}
 }

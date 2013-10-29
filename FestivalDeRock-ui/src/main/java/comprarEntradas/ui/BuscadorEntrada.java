@@ -75,7 +75,7 @@ public class BuscadorEntrada implements Serializable {
 		return this.entradaSeleccionada;
 	}
 
-	public void setCelularSeleccionado(Entrada entradaSeleccionada) {
+	public void setEntradaSeleccionada(Entrada entradaSeleccionada) {
 		this.entradaSeleccionada = entradaSeleccionada;
 	}
 

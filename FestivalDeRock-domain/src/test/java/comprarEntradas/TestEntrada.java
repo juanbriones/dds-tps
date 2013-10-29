@@ -14,7 +14,7 @@ import comprarEntradas.domain.Mayor18;
 import comprarEntradas.domain.Menor12;
 import comprarEntradas.domain.Menor18;
 import comprarEntradas.domain.Noche;
-import comprarEntradas.domain.Sistema;
+import comprarEntradas.domain.Home;
 import comprarEntradas.domain.Ubicacion;
 
 import java.util.*;
@@ -52,7 +52,7 @@ public class TestEntrada {
 	private Entrada entrada7;
 	private Entrada entrada8;
 	
-	private Sistema sistema;
+	private Home sistema;
 	
 	private Mayor18 mayor18;
 	private Menor18 menor18;
@@ -113,7 +113,7 @@ public class TestEntrada {
 		noche1.setEntradas(entradasNoche1);
 		noche2.setEntradas(entradasNoche2);
 		
-		sistema = new Sistema(new Descuento(), 20130805);
+		sistema = new Home(new Descuento(), 20130805);
 		
 		sistema.addNoche(noche1);
 		sistema.addNoche(noche2);

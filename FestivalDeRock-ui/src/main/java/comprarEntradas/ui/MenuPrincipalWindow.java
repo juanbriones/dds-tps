@@ -14,8 +14,8 @@ import org.uqbar.arena.windows.WindowOwner;
 
 public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 
-	public MenuPrincipalWindow(WindowOwner parent) {
-		super(parent, new MenuPrincipal());
+	public MenuPrincipalWindow(WindowOwner owner) {
+		super(owner, new MenuPrincipal());
 	}
 
 	@Override

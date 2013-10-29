@@ -13,6 +13,7 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.commons.utils.Observable;
 
 import comprarEntradas.domain.Entrada;
@@ -23,8 +24,8 @@ import comprarEntradas.domain.Entrada;
 @Observable
 public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 
-	public VentaDeEntradasWindow(WindowOwner parent) {
-		super(parent, new BuscadorEntrada());
+	public VentaDeEntradasWindow(WindowOwner owner) {
+		super(owner, new BuscadorEntrada());
 		this.getModelObject().search();
 	}
 	
@@ -138,17 +139,12 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		actionsPanel.setLayout(new HorizontalLayout());
 	
 		
-//		Button edit = new Button(actionsPanel);
-//		edit.setCaption("Editar");
-//		edit.onClick(new MessageSend(this, "modificarCelular"));
-//	
-//		Button remove = new Button(actionsPanel);
-//		remove.setCaption("Borrar");
-//		remove.onClick(new MessageSend(this.getModelObject(), "eliminarCelularSeleccionado"));
-//		
-//	
+		new Button(actionsPanel)
+		.setCaption("Comprar")
+		.onClick(new MessageSend(this, "comprarEntrada"));
+	
 //		// Deshabilita los botones si no hay ningún elemento seleccionado en la grilla.
-//		
+		
 //		NotNullObservable elementSelected = new NotNullObservable("entradaSeleccionada");
 //		remove.bindEnabled(elementSelected);
 //		edit.bindEnabled(elementSelected);
@@ -161,13 +157,13 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 //	public void crearCelular() {
 //		this.openDialog(new CrearCelularWindow(this));
 //	}
-//
-//	public void modificarCelular() {
-//		this.openDialog(new EditarCelularWindow(this, this.getModelObject().getCelularSeleccionado()));
-//	}
-//
-//	protected void openDialog(Dialog<?> dialog) {
-//		dialog.onAccept(new MessageSend(this.getModelObject(), "search"));
-//		dialog.open();
-//	}	
+
+	public void comprarEntrada() {
+		this.openDialog(new ComprarEntradaWindow(this, this.getModelObject().getEntradaSeleccionada()));
+	}
+
+	protected void openDialog(Dialog<?> dialog) {
+		dialog.onAccept(new MessageSend(this.getModelObject(), "search"));
+		dialog.open();
+	}	
 }

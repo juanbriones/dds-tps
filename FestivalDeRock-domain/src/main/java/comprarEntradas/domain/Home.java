@@ -2,7 +2,7 @@ package comprarEntradas.domain;
 
 import java.util.*;
 
-public class Sistema {
+public class Home {
 	
     private Collection<Noche> noches = new ArrayList<Noche>();
     private Collection<Cliente> clientes = new ArrayList<Cliente>();
@@ -11,7 +11,7 @@ public class Sistema {
     private int fecha;
     
     
-    public Sistema (Descuento descuento, int fecha)
+    public Home (Descuento descuento, int fecha)
     {
     	this.descuento = descuento;
     	this.fecha = fecha;
