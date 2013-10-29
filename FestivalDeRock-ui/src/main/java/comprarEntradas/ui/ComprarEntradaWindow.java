@@ -11,6 +11,7 @@ import org.uqbar.arena.windows.WindowOwner;
 
 import comprarEntradas.domain.Entrada;
 
+@SuppressWarnings("serial")
 public class ComprarEntradaWindow extends TransactionalDialog<Entrada> {
 	
 	public ComprarEntradaWindow(WindowOwner owner, Entrada model) {
@@ -20,7 +21,7 @@ public class ComprarEntradaWindow extends TransactionalDialog<Entrada> {
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		Panel form = new Panel(mainPanel);
-		form.setLayout(new ColumnLayout(3));
+		form.setLayout(new ColumnLayout(2));
 		
 		new Label(form).setText("Nombre");
 		new TextBox(form).bindValueToProperty("nombre");

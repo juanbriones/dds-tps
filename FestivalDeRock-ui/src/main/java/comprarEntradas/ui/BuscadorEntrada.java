@@ -9,6 +9,7 @@ import comprarEntradas.repositorio.RepositorioEntradas;
 import comprarEntradas.domain.Entrada;
 
 
+@SuppressWarnings("serial")
 @Observable
 public class BuscadorEntrada implements Serializable {
 	
@@ -18,7 +19,7 @@ public class BuscadorEntrada implements Serializable {
     private Integer butaca;
 	private List<Entrada> resultados;
 	private Entrada entradaSeleccionada;
-	
+
 	
 	// ********************************************************
 	// ** ACCIONES

@@ -4,14 +4,13 @@ import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
-import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
 
-//Ventana que contiene el menu principal.
+//Ventana que contiene el menú principal.
 
+@SuppressWarnings("serial")
 public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 
 	public MenuPrincipalWindow(WindowOwner owner) {
@@ -33,7 +32,7 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 		
 	}
 	
-	//Acciones asociadas de la pantalla.
+	//Acciones asociadas a la pantalla.
 	
 	@Override
 	protected void addActions(Panel actionsPanel) {

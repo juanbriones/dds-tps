@@ -10,11 +10,13 @@ import org.uqbar.commons.utils.Observable;
 import comprarEntradas.domain.*;
 	
 
+@SuppressWarnings("serial")
 @Observable
 public class RepositorioEntradas implements Serializable {
 	private static RepositorioEntradas instance;
 	private List<Entrada> data = new ArrayList<Entrada>();
 
+	
 	public static synchronized RepositorioEntradas getInstance() {
 		if (instance == null) {
 			instance = new RepositorioEntradas();

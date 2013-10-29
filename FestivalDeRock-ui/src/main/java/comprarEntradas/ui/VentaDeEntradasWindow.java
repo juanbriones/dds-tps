@@ -19,8 +19,9 @@ import org.uqbar.commons.utils.Observable;
 import comprarEntradas.domain.Entrada;
 
 
-//Ventana de búsqueda y selección de entradas.
+//Ventana de búsqueda, selección y venta de entradas.
 
+@SuppressWarnings("serial")
 @Observable
 public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 
@@ -70,7 +71,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("butaca");
 	}
 	
-	//Acciones asociadas de la pantalla.
+	//Acciones asociadas a la pantalla.
 	
 	@Override
 	protected void addActions(Panel actionsPanel) {
@@ -137,13 +138,12 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	protected void createGridActions(Panel mainPanel) {
 		Panel actionsPanel = new Panel(mainPanel);
 		actionsPanel.setLayout(new HorizontalLayout());
-	
 		
 		new Button(actionsPanel)
 		.setCaption("Comprar")
 		.onClick(new MessageSend(this, "comprarEntrada"));
 	
-//		// Deshabilita los botones si no hay ningún elemento seleccionado en la grilla.
+		// Deshabilita los botones si no hay ningún elemento seleccionado en la grilla.
 		
 //		NotNullObservable elementSelected = new NotNullObservable("entradaSeleccionada");
 //		remove.bindEnabled(elementSelected);
@@ -153,10 +153,6 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	// ********************************************************
 	// ** ACCIONES
 	// ********************************************************
-
-//	public void crearCelular() {
-//		this.openDialog(new CrearCelularWindow(this));
-//	}
 
 	public void comprarEntrada() {
 		this.openDialog(new ComprarEntradaWindow(this, this.getModelObject().getEntradaSeleccionada()));
