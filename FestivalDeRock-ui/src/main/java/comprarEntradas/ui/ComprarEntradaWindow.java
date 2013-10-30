@@ -11,6 +11,7 @@ import org.uqbar.arena.windows.WindowOwner;
 
 import comprarEntradas.domain.Entrada;
 
+
 @SuppressWarnings("serial")
 public class ComprarEntradaWindow extends TransactionalDialog<Entrada> {
 	
@@ -46,3 +47,4 @@ public class ComprarEntradaWindow extends TransactionalDialog<Entrada> {
 			.onClick(new MessageSend(this, "cancel"));
 	}
 }
+
