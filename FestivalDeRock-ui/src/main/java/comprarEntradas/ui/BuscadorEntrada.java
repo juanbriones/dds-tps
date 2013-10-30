@@ -25,8 +25,12 @@ public class BuscadorEntrada implements Serializable {
 	// ** ACCIONES
 	// ********************************************************
 
-	public void search() {
-		this.resultados = RepositorioEntradas.getInstance().search(this.nroNoche,this.sector, this.fila, this.butaca);
+	public void searchDisponibles(){
+		this.resultados = RepositorioEntradas.getInstance().search(this.nroNoche, this.sector, this.fila, this.butaca, false);
+	}
+	
+	public void searchOcupadas() {
+		this.resultados = RepositorioEntradas.getInstance().search(this.nroNoche,this.sector, this.fila, this.butaca, true);
 	}
 
 	public void clear() {

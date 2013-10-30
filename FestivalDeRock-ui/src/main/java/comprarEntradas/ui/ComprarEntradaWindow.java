@@ -15,8 +15,8 @@ import comprarEntradas.domain.Entrada;
 @SuppressWarnings("serial")
 public class ComprarEntradaWindow extends TransactionalDialog<Entrada> {
 	
-	public ComprarEntradaWindow(WindowOwner owner, Entrada model) {
-		super(owner, model);
+	public ComprarEntradaWindow(WindowOwner owner, Entrada entrada) {
+		super(owner, entrada);
 	}
 	
 	@Override
@@ -46,5 +46,10 @@ public class ComprarEntradaWindow extends TransactionalDialog<Entrada> {
 			.setCaption("Cancelar")
 			.onClick(new MessageSend(this, "cancel"));
 	}
+	
+	@Override
+	public void accept(){
+		this.getModelObject().setVendida(true);
+		super.accept();
+	}
 }
-

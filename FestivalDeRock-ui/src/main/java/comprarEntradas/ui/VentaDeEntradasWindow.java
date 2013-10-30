@@ -27,7 +27,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 
 	public VentaDeEntradasWindow(WindowOwner owner) {
 		super(owner, new BuscadorEntrada());
-		this.getModelObject().search();
+		this.getModelObject().searchDisponibles();
 	}
 	
 	/*
@@ -159,7 +159,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	}
 
 	protected void openDialog(Dialog<?> dialog) {
-		dialog.onAccept(new MessageSend(this.getModelObject(), "search"));
+		dialog.onAccept(new MessageSend(this.getModelObject(), "searchDisponibles"));
 		dialog.open();
 	}	
 }

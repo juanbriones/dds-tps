@@ -48,4 +48,8 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 	public void abrirVentanaVender(){
 		new VentaDeEntradasWindow(this).open(); 
 	}
+	
+	public void abrirVentanaAnular(){
+		new AnulacionDeEntradasWindow(this).open(); 
+	}
 }

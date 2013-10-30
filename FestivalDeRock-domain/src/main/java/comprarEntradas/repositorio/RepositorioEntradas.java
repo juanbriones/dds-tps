@@ -74,12 +74,12 @@ public class RepositorioEntradas implements Serializable {
 	// ** BUSQUEDAS
 	// ********************************************************
 	
-	public List<Entrada> search(Integer nroNoche, Character sector, Integer fila, Integer butaca) {
+	public List<Entrada> search(Integer nroNoche, Character sector, Integer fila, Integer butaca, boolean estasVendida) {
 		List<Entrada> resultados = new ArrayList<Entrada>();
 
 		for (Entrada entrada : this.data) 
 		{
-			if (match(nroNoche, entrada.getNroNoche()) && match(sector, entrada.getSector()) && match(fila, entrada.getFila()) && match(butaca, entrada.getButaca())) {
+			if (match(nroNoche, entrada.getNroNoche()) && match(sector, entrada.getSector()) && match(fila, entrada.getFila()) && match(butaca, entrada.getButaca()) && match(estasVendida, entrada.isVendida())) {
 				resultados.add(entrada);
 			}
 		}
