@@ -16,19 +16,19 @@ public class Descuento {
 	}
 	
 	
-	public int diferenciaEnDias(int fecha1, int fecha2)
+	public long diferenciaEnDias(long fecha1, long fecha2)
 	{
-		int difFecha = fecha1 - fecha2;
+		long difFecha = fecha1 - fecha2;
 		
-		int aniosAux = difFecha / 10000;
-		int mesesAux = (difFecha % 10000) / 100;
-		int diasAux = difFecha % 100;
+		long aniosAux = difFecha / 10000;
+		long mesesAux = (difFecha % 10000) / 100;
+		long diasAux = difFecha % 100;
 		
 		return aniosAux * 360 + mesesAux * 30 + diasAux;
 	}
 	
 	
-	public int calcularDescuentoTotal(Cliente cliente, Entrada entrada, int fechaVenta) 
+	public int calcularDescuentoTotal(Cliente cliente, Entrada entrada, long fechaVenta) 
 	{
 		int descuentoAnticipada = 0;
 		int descuentoCliente = cliente.calcularDescuentoCliente(entrada);

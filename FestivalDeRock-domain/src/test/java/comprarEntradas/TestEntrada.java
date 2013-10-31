@@ -38,10 +38,6 @@ public class TestEntrada {
 	private Ubicacion ubicacion2;
 	private Ubicacion ubicacion3;
 	private Ubicacion ubicacion4;
-	private Ubicacion ubicacion5;
-	private Ubicacion ubicacion6;
-	private Ubicacion ubicacion7;
-	private Ubicacion ubicacion8;
 	
 	private Entrada entrada1;
 	private Entrada entrada2;
@@ -118,12 +114,12 @@ public class TestEntrada {
 		sistema.addNoche(noche1);
 		sistema.addNoche(noche2);
 		
-		mayor18 = new Mayor18();
-		menor18 = new Menor18();
-		jubilado = new Jubilado();
-		dama = new Dama();
-		menor12_1 = new Menor12(true);
-		menor12_2 = new Menor12(false);
+		mayor18 = new Mayor18("nombre1","apellido1",20);
+		menor18 = new Menor18("nombre2","apellido2",25);
+		jubilado = new Jubilado("nombre3","apellido3",60);
+		dama = new Dama("nombre4","apellido4",30);
+		menor12_1 = new Menor12("nombre5","apellido5",10,true);
+		menor12_2 = new Menor12("nombre6","apellido6",10,false);
 	}
 	
 	

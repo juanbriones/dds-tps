@@ -10,7 +10,7 @@ public class Entrada {
 	private boolean vendida;
 	private boolean vip;
 	private int precioBase;
-	private int fechaVenta;
+	private long fechaVenta;
 	private Cliente cliente;
 	private Noche noche;
 	private Ubicacion ubicacion;
@@ -93,15 +93,15 @@ public class Entrada {
     	this.noche = noche;
     } 
    
-	public int getFechaVenta() {
+	public long getFechaVenta() {
 		return fechaVenta;
 	}
 	
-	public void setFechaVenta(int fechaVenta) {
+	public void setFechaVenta(long fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
 	
-	public void estasVendida(Cliente cliente, int fechaVenta) {
+	public void estasVendida(Cliente cliente, long fechaVenta) {
 		this.vendida = true;
 		this.cliente = cliente;
 		this.fechaVenta = fechaVenta;
@@ -130,15 +130,23 @@ public class Entrada {
 		return this.ubicacion.getButaca();
 	}	
 	
-	public void setNombre(char[] nombre) {
+	public void setNombreCliente(String nombre) {
 		this.cliente.setNombre(nombre);
 	}
 	
-	public void setApellido(char[] apellido) {
+	public void setApellidoCliente(String apellido) {
 		this.cliente.setApellido(apellido);
 	}
 	
-	public void setEdad(int edad) {
+	public void setEdadCliente(Integer edad) {
 		this.cliente.setEdad(edad);
+	}
+
+	public String getNombreCliente() {
+		return this.cliente.getNombre();
+	}
+	
+	public String getApellidoCliente() {
+		return this.cliente.getApellido();
 	}
 }

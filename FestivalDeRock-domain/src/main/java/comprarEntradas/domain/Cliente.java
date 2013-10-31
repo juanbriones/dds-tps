@@ -3,14 +3,28 @@ package comprarEntradas.domain;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public abstract class Cliente {	
+import org.uqbar.commons.utils.Observable;
+
+//TODO abstract
+@Observable
+public class Cliente {	
 	
 	public TarjetaCredito tarjeta;
 	public Collection<Entrada> entradas = new ArrayList<Entrada>();
-	private char[] nombre;
-	private char[] apellido;
-	private int edad;
+	private String nombre;
+	private String apellido;
+	private Integer edad;
+	//TODO
+	private Boolean jubilado;
 	
+	public Cliente() {
+	}
+	
+	public Cliente(String nombre, String apellido, int edad) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
+	}
 	
 	public TarjetaCredito getTarjeta() {
 		return tarjeta;
@@ -46,33 +60,41 @@ public abstract class Cliente {
 	}
 
 
-	public char[] getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 
 
-	public void setNombre(char[] nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
 
-	public char[] getApellido() {
+	public String getApellido() {
 		return apellido;
 	}
 
 
-	public void setApellido(char[] apellido) {
+	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
 
 
-	public int getEdad() {
+	public Integer getEdad() {
 		return edad;
 	}
 
 
-	public void setEdad(int edad) {
+	public void setEdad(Integer edad) {
 		this.edad = edad;
+	}
+
+	public Boolean getJubilado() {
+		return jubilado;
+	}
+
+	public void setJubilado(Boolean jubilado) {
+		this.jubilado = jubilado;
 	}
 
 }

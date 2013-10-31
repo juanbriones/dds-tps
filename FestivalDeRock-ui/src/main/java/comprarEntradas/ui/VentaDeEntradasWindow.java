@@ -3,11 +3,15 @@ package comprarEntradas.ui;
 import java.awt.Color;
 
 import org.uqbar.arena.actions.MessageSend;
+import org.uqbar.arena.bindings.NotNullObservable;
+import org.uqbar.arena.bindings.ObservableProperty;
+import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
@@ -15,8 +19,11 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.commons.utils.Observable;
+import org.uqbar.lacar.ui.model.ListBuilder;
+import org.uqbar.lacar.ui.model.bindings.Binding;
 
-import comprarEntradas.domain.Entrada;
+import comprarEntradas.domain.*;
+import comprarEntradas.repositorio.*;
 
 
 //Ventana de búsqueda, selección y venta de entradas.
@@ -56,7 +63,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		Panel searchFormPanel = new Panel(mainPanel);
-		searchFormPanel.setLayout(new ColumnLayout(2));
+		searchFormPanel.setLayout(new ColumnLayout(4));
 		
 		new Label(searchFormPanel).setText("Noche").setForeground(Color.BLUE);
 		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("nroNoche");
@@ -77,7 +84,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	protected void addActions(Panel actionsPanel) {
 		new Button(actionsPanel)
 			.setCaption("Buscar")
-			.onClick(new MessageSend(this.getModelObject(), "search"))
+			.onClick(new MessageSend(this.getModelObject(), "searchDisponibles"))
 			.setAsDefault()
 			.disableOnError();
 
@@ -139,15 +146,14 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		Panel actionsPanel = new Panel(mainPanel);
 		actionsPanel.setLayout(new HorizontalLayout());
 		
-		new Button(actionsPanel)
-		.setCaption("Comprar")
-		.onClick(new MessageSend(this, "comprarEntrada"));
+		Button comprar = new Button(actionsPanel);
+		comprar.setCaption("Comprar");
+		comprar.onClick(new MessageSend(this, "comprarEntrada"));
 	
 		// Deshabilita los botones si no hay ningún elemento seleccionado en la grilla.
 		
-//		NotNullObservable elementSelected = new NotNullObservable("entradaSeleccionada");
-//		remove.bindEnabled(elementSelected);
-//		edit.bindEnabled(elementSelected);
+		NotNullObservable elementSelected = new NotNullObservable("entradaSeleccionada");
+		comprar.bindEnabled(elementSelected);
 	}
 		
 	// ********************************************************

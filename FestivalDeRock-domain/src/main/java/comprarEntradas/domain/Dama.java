@@ -3,10 +3,16 @@ package comprarEntradas.domain;
 import java.util.*;
 
 public class Dama extends Cliente {
-	
+
 	private static int porcentaje = 20;
 	private static double porcentajeEntradas = 0.20;
+
+	public Dama() {
+	}
 	
+	public Dama(String nombre, String apellido, int edad) {
+		super(nombre, apellido, edad);
+	}
 	
 	@Override
 	public boolean isDama() {

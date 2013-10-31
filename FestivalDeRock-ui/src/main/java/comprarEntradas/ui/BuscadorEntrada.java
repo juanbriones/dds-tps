@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
-import comprarEntradas.repositorio.RepositorioEntradas;
+import comprarEntradas.repositorio.Repositorio;
 import comprarEntradas.domain.Entrada;
 
 
@@ -17,6 +17,8 @@ public class BuscadorEntrada implements Serializable {
 	private Character sector;
     private Integer fila;
     private Integer butaca;
+    private String nombreCliente;
+    private String apellidoCliente;
 	private List<Entrada> resultados;
 	private Entrada entradaSeleccionada;
 
@@ -26,11 +28,11 @@ public class BuscadorEntrada implements Serializable {
 	// ********************************************************
 
 	public void searchDisponibles(){
-		this.resultados = RepositorioEntradas.getInstance().search(this.nroNoche, this.sector, this.fila, this.butaca, false);
+		this.resultados = Repositorio.getInstance().search(this.nroNoche, this.sector, this.fila, this.butaca, false, this.nombreCliente, this.apellidoCliente);
 	}
 	
 	public void searchOcupadas() {
-		this.resultados = RepositorioEntradas.getInstance().search(this.nroNoche,this.sector, this.fila, this.butaca, true);
+		this.resultados = Repositorio.getInstance().search(this.nroNoche,this.sector, this.fila, this.butaca, true, this.nombreCliente, this.apellidoCliente);
 	}
 
 	public void clear() {
@@ -38,6 +40,8 @@ public class BuscadorEntrada implements Serializable {
 		this.sector = null;
 		this.fila = null;
 		this.butaca = null;
+		this.nombreCliente = null;
+		this.apellidoCliente = null;
 	}
 
 	// ********************************************************
@@ -74,6 +78,22 @@ public class BuscadorEntrada implements Serializable {
 
 	public void setButaca(Integer butaca) {
 		this.butaca = butaca;
+	}
+	
+	public String getNombreCliente() {
+		return nombreCliente;
+	}
+
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
+	}
+	
+	public String getApellidoCliente() {
+		return apellidoCliente;
+	}
+
+	public void setApellidoCliente(String apellidoCliente) {
+		this.apellidoCliente = apellidoCliente;
 	}
 
 	public Entrada getEntradaSeleccionada() {

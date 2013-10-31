@@ -28,14 +28,14 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		Panel menuFormPanel = new Panel(mainPanel);
-		menuFormPanel.setLayout(new ColumnLayout(2));
-		
 	}
 	
 	//Acciones asociadas a la pantalla.
 	
 	@Override
 	protected void addActions(Panel actionsPanel) {
+		actionsPanel.setLayout(new ColumnLayout(2));
+		
 		new Button(actionsPanel)
 			.setCaption("Vender entrada")
 			.onClick(new MessageSend(this, "abrirVentanaVender"));
@@ -43,6 +43,22 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 		new Button(actionsPanel)
 			.setCaption("Anular entrada")
 			.onClick(new MessageSend(this, "abrirVentanaAnular"));
+		
+		new Button(actionsPanel)
+			.setCaption("Buscar entradas por cliente/fecha");
+			//.onClick(new MessageSend(this, ""));
+		
+		new Button(actionsPanel)
+			.setCaption("Buscar entradas por puesto de venta/festival");
+			//.onClick(new MessageSend(this, ""));
+		
+		new Button(actionsPanel)
+			.setCaption("Buscar bandas por nombre/festival");
+			//.onClick(new MessageSend(this, ""));
+		
+		new Button(actionsPanel)
+		.setCaption("Buscar bandas por cliente/festival");
+		//.onClick(new MessageSend(this, ""));
 	}	
 	
 	public void abrirVentanaVender(){

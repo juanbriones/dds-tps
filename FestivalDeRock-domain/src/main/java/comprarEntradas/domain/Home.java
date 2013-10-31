@@ -8,21 +8,21 @@ public class Home {
     private Collection<Cliente> clientes = new ArrayList<Cliente>();
     private PaymentGateway plataformaDePago = new PaymentGateway();
     private Descuento descuento = new Descuento();
-    private int fecha;
+    private long fecha;
     
     
-    public Home (Descuento descuento, int fecha)
+    public Home (Descuento descuento, long fecha)
     {
     	this.descuento = descuento;
     	this.fecha = fecha;
     }
     
-	public int getFecha() {
+	public long getFecha() {
 		return fecha;
 	}
 
 
-	public void setFecha(int fecha) {
+	public void setFecha(long fecha) {
 		this.fecha = fecha;
 	}
 
