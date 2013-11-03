@@ -111,12 +111,12 @@ public class AnulacionDeEntradasWindow extends VentaDeEntradasWindow{
 		new Column<Entrada>(table)
 		.setTitle("Nombre")
 		.setFixedSize(80)
-		.bindContentsToProperty("cliente.nombre");
+		.bindContentsToProperty("nombreCliente");
 		
 		new Column<Entrada>(table)
 		.setTitle("Apellido")
 		.setFixedSize(80)
-		.bindContentsToProperty("cliente.apellido");	
+		.bindContentsToProperty("apellidoCliente");	
 	}
 	
 	@Override
