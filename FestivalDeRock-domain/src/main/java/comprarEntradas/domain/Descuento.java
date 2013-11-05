@@ -2,36 +2,36 @@ package comprarEntradas.domain;
 
 public class Descuento {
 	
-	private int porcentajeAnticipada = 10;
-	private int porcentajePrecioCombo = 10;
+	private Integer porcentajeAnticipada = 10;
+	private Integer porcentajePrecioCombo = 10;
 
 
-	public void setPorcentajeAnticipada(int porcentajeAnticipada) {
+	public void setPorcentajeAnticipada(Integer porcentajeAnticipada) {
 		this.porcentajeAnticipada = porcentajeAnticipada;
 	}
 	
 
-	public void setPorcentajePrecioCombo(int porcentajePrecioCombo) {
+	public void setPorcentajePrecioCombo(Integer porcentajePrecioCombo) {
 		this.porcentajePrecioCombo = porcentajePrecioCombo;
 	}
 	
 	
-	public long diferenciaEnDias(long fecha1, long fecha2)
+	public Integer diferenciaEnDias(Integer fecha1, Integer fecha2)
 	{
-		long difFecha = fecha1 - fecha2;
+		Integer difFecha = fecha1 - fecha2;
 		
-		long aniosAux = difFecha / 10000;
-		long mesesAux = (difFecha % 10000) / 100;
-		long diasAux = difFecha % 100;
+		Integer aniosAux = difFecha / 10000;
+		Integer mesesAux = (difFecha % 10000) / 100;
+		Integer diasAux = difFecha % 100;
 		
 		return aniosAux * 360 + mesesAux * 30 + diasAux;
 	}
 	
 	
-	public int calcularDescuentoTotal(Cliente cliente, Entrada entrada, long fechaVenta) 
+	public Integer calcularDescuentoTotal(Cliente cliente, Entrada entrada, Integer fechaVenta) 
 	{
-		int descuentoAnticipada = 0;
-		int descuentoCliente = cliente.calcularDescuentoCliente(entrada);
+		Integer descuentoAnticipada = 0;
+		Integer descuentoCliente = cliente.calcularDescuentoCliente(entrada);
 		
 		
 		if (this.diferenciaEnDias(entrada.getNoche().getFechaInicio(), fechaVenta) > 30)
@@ -43,7 +43,7 @@ public class Descuento {
 	}
 	
 	
-	public int calcularDescuentoCombo(int precioCombo) 
+	public Integer calcularDescuentoCombo(Integer precioCombo) 
 	{	
 		if (precioCombo > 1000)
 		{

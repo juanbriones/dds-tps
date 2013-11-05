@@ -2,8 +2,8 @@ package comprarEntradas.domain;
 
 public class TarjetaCredito {
 	
-	public int numero;
-	public int credito;
+	public Integer numero;
+	public Integer credito;
 	
 	
 	public TarjetaCredito() {
@@ -11,28 +11,28 @@ public class TarjetaCredito {
 	}
 	
 	
-	public TarjetaCredito(int numero, int credito) {
+	public TarjetaCredito(Integer numero, Integer credito) {
 		this.numero = numero;
 		this.credito = credito;
 	}
 	
 	
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 	
 
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 	
 
-	public int getCredito() {
+	public Integer getCredito() {
 		return credito;
 	}
 	
 
-	public void setCredito(int credito) {
+	public void setCredito(Integer credito) {
 		this.credito = credito;
 	}
 	

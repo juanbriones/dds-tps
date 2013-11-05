@@ -6,11 +6,11 @@ import org.uqbar.commons.utils.Observable;
 @Observable
 public class Entrada {
 	
-	private int idEntrada;
-	private boolean vendida;
-	private boolean vip;
-	private int precioBase;
-	private Long fechaVenta;
+	private Integer idEntrada;
+	private Boolean vendida;
+	private Boolean vip;
+	private Integer precioBase;
+	private Integer fechaVenta;
 	private Cliente cliente;
 	private Noche noche;
 	private Ubicacion ubicacion;
@@ -20,7 +20,7 @@ public class Entrada {
 		
 	}
 	
-    public Entrada(int idEntrada, boolean vip, Ubicacion ubicacion, Noche noche) {
+    public Entrada(Integer idEntrada, Boolean vip, Ubicacion ubicacion, Noche noche) {
 		this.idEntrada = idEntrada;
 		this.vendida = false;
 		this.vip = vip;
@@ -29,7 +29,7 @@ public class Entrada {
 		this.ubicacion = ubicacion;
 	}
 	
-	public Entrada(int idEntrada, boolean vip, Ubicacion ubicacion) {
+	public Entrada(Integer idEntrada, Boolean vip, Ubicacion ubicacion) {
 		this.idEntrada = idEntrada;
 		this.vendida = false;
 		this.vip = vip;
@@ -37,27 +37,27 @@ public class Entrada {
 		this.ubicacion = ubicacion;
 	}
 	
-	public int getIdEntrada() {
+	public Integer getIdEntrada() {
 		return idEntrada;
 	}
 
-    public void setIdEntrada(int idEntrada) {
+    public void setIdEntrada(Integer idEntrada) {
     	this.idEntrada = idEntrada;
     }
     
-    public void setVendida(boolean vendida) {
+    public void setVendida(Boolean vendida) {
     	this.vendida = vendida;
     }
         
-    public boolean isVendida() {
+    public Boolean isVendida() {
     	return vendida;	
     }
         
-    public boolean isVip() {
+    public Boolean isVip() {
     	return vip;
     }
     
-    public void setVip(boolean vip) {
+    public void setVip(Boolean vip) {
     	this.vip = vip;
     }
         
@@ -69,11 +69,11 @@ public class Entrada {
     	this.cliente = cliente;
     }
    
-    public int getPrecioBase() {
+    public Integer getPrecioBase() {
     	return precioBase;
     }
       
-    public void setPrecioBase(int precioBase) {
+    public void setPrecioBase(Integer precioBase) {
     	this.precioBase = precioBase;
     }
        
@@ -93,28 +93,28 @@ public class Entrada {
     	this.noche = noche;
     } 
    
-	public long getFechaVenta() {
+	public Integer getFechaVenta() {
 		return fechaVenta;
 	}
 	
-	public void setFechaVenta(long fechaVenta) {
+	public void setFechaVenta(Integer fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
 	
-	public void estasVendida(Cliente cliente, long fechaVenta) {
+	public void estasVendida(Cliente cliente, Integer fechaVenta) {
 		this.vendida = true;
 		this.cliente = cliente;
 		this.fechaVenta = fechaVenta;
     }
 	
-	public int getPrecio() {		
-		int precioExtra = noche.precioExtra();
-	    int precioTotal = this.precioBase + precioExtra;
+	public Integer getPrecio() {		
+		Integer precioExtra = noche.precioExtra();
+	    Integer precioTotal = this.precioBase + precioExtra;
 	    
 	    return precioTotal;
 	}
 	
-	public int getNroNoche() {
+	public Integer getNroNoche() {
 		return this.noche.getNroNoche();
 	}
 	
@@ -122,11 +122,11 @@ public class Entrada {
 		return this.ubicacion.getSector();
 	}
 	
-	public int getFila() {
+	public Integer getFila() {
 		return this.ubicacion.getFila();
 	}
 	
-	public int getButaca() {
+	public Integer getButaca() {
 		return this.ubicacion.getButaca();
 	}	
 	
@@ -150,11 +150,11 @@ public class Entrada {
 		return this.cliente.getApellido();
 	}
 	
-	public Long getFechaInicio() {
+	public Integer getFechaInicio() {
 		return this.noche.getFechaInicio();
 	}
 	
-	public void setFechaInicio(Long fechaInicio) {
+	public void setFechaInicio(Integer fechaInicio) {
 		this.noche.setFechaInicio(fechaInicio);
 	}
 }

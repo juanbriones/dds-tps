@@ -62,8 +62,8 @@ public class Repositorio implements Serializable {
 		bandas2.add(banda4);
 		bandas2.add(banda5);
 
-		Noche noche1 = new Noche(1,bandas1, (long) 20130810);
-		Noche noche2 = new Noche(2,bandas2, (long) 20130815);
+		Noche noche1 = new Noche(1,bandas1, 20140110);
+		Noche noche2 = new Noche(2,bandas2, 20140115);
 		
 		noches.add(noche1);
 		noches.add(noche2);
@@ -86,15 +86,6 @@ public class Repositorio implements Serializable {
 		Entrada entrada6 = new Entrada(6, false, ubicacion2, noche2);
 		Entrada entrada7 = new Entrada(7, true, ubicacion3, noche2);
 		Entrada entrada8 = new Entrada(8, true, ubicacion4, noche2);
-		
-//		entrada1.setCliente(new Cliente());
-//		entrada2.setCliente(new Cliente());
-//		entrada3.setCliente(new Cliente());
-//		entrada4.setCliente(new Cliente());
-//		entrada5.setCliente(new Cliente());
-//		entrada6.setCliente(new Cliente());
-//		entrada7.setCliente(new Cliente());
-//		entrada8.setCliente(new Cliente());
 		
 		entradas.add(entrada1);
 		entradas.add(entrada2);
@@ -119,14 +110,6 @@ public class Repositorio implements Serializable {
 		
 		noche1.setEntradas(entradas1);
 		noche2.setEntradas(entradas2);
-		
-//		Cliente cliente1 = new Menor18("nombre1", "apellido1", 15);
-//		Cliente cliente2 = new Mayor18("nombre2", "apellido2", 20);
-//		Cliente cliente3 = new Jubilado("nombre3", "apellido3", 60);
-//		
-//		clientes.add(cliente1);
-//		clientes.add(cliente2);
-//		clientes.add(cliente3);	
 	}
 	
 	// ********************************************************
@@ -185,7 +168,8 @@ public class Repositorio implements Serializable {
 			if (match(nroNoche, entrada.getNroNoche()) 
 					&& match(sector, entrada.getSector()) 
 					&& match(fila, entrada.getFila()) 
-					&& match(butaca, entrada.getButaca())) {
+					&& match(butaca, entrada.getButaca())
+					&& match(false, entrada.isVendida())) {
 				resultados.add(entrada);
 			}
 		}
@@ -193,7 +177,7 @@ public class Repositorio implements Serializable {
 		return resultados;
 	}
 	
-	public List<Entrada> searchOcupadas(Integer nroNoche, Character sector, Integer fila, Integer butaca, boolean estasVendida, String nombreCliente, String apellidoCliente, Long fechaInicio) {
+	public List<Entrada> searchOcupadas(Integer nroNoche, Character sector, Integer fila, Integer butaca, String nombreCliente, String apellidoCliente, Integer fechaDesde, Integer fechaHasta) {
 		List<Entrada> resultados = new ArrayList<Entrada>();
 
 		for (Entrada entrada : this.entradas) 
@@ -202,10 +186,10 @@ public class Repositorio implements Serializable {
 					&& match(sector, entrada.getSector()) 
 					&& match(fila, entrada.getFila()) 
 					&& match(butaca, entrada.getButaca()) 
-					&& match(estasVendida, entrada.isVendida())
+					&& match(true, entrada.isVendida())
 					&& match(nombreCliente, entrada.getNombreCliente())
 					&& match(apellidoCliente, entrada.getApellidoCliente())
-					&& (fechaInicio >= entrada.getFechaInicio())) {
+					&& (this.matchFechas(entrada.getFechaInicio(), fechaDesde, fechaHasta))) {
 				resultados.add(entrada);
 			}
 		}
@@ -215,5 +199,13 @@ public class Repositorio implements Serializable {
 
 	protected boolean match(Object expectedValue, Object realValue) {
 		return expectedValue == null || realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase());
+	}
+	
+	protected boolean matchFechas(Integer fechaInicio, Integer fechaDesde, Integer fechaHasta){
+		
+		if((fechaDesde == null) || (fechaHasta == null))
+			return true;
+		else
+			return ((fechaDesde <= fechaInicio) && (fechaInicio <= fechaHasta));
 	}
 }

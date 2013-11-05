@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.commons.utils.Home;
 
 import comprarEntradas.domain.*;
 
@@ -20,10 +21,7 @@ public class ComprarEntradaWindow extends TransactionalDialog<Entrada> {
 	public ComprarEntradaWindow(WindowOwner owner, Entrada entrada) {
 		super(owner, entrada);
 		entrada.setCliente(new Cliente());
-		entrada.setNombreCliente(null);
-		entrada.setApellidoCliente(null);
-		entrada.setEdadCliente(null);
-		entrada.setFechaInicio((long)20130509);
+		entrada.setFechaVenta(new Venta().obtenerFecha());		
 	}
 	
 	@Override
@@ -46,8 +44,8 @@ public class ComprarEntradaWindow extends TransactionalDialog<Entrada> {
 		edad.setWidth(80);
 		edad.bindValueToProperty("cliente.edad");
 		
-		new Label(form).setText("Jubilado");
-		new CheckBox(form).bindValueToProperty("cliente.jubilado");
+//		new Label(form).setText("Jubilado");
+//		new CheckBox(form).bindValueToProperty("cliente.jubilado");
 	}
 	
 	@Override

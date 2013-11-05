@@ -2,13 +2,13 @@ package comprarEntradas.domain;
 
 public class Ubicacion {
 	
-	private char sector;
-    private int fila;
-    private int butaca;
-    private int precio;
+	private Character sector;
+    private Integer fila;
+    private Integer butaca;
+    private Integer precio;
 
     
-	public Ubicacion(char sector, int fila, int butaca, int precio) {
+	public Ubicacion(Character sector, Integer fila, Integer butaca, Integer precio) {
 		this.sector = sector;
 		this.fila = fila;
 		this.butaca = butaca;
@@ -16,49 +16,49 @@ public class Ubicacion {
 	}
     
 	
-	public char getSector() {
+	public Character getSector() {
 		return sector;
 	}
 
 	
-	public void setSector(char sector) {
+	public void setSector(Character sector) {
 		this.sector = sector;
 	}
 
 	
-	public int getFila() {
+	public Integer getFila() {
 		return fila;
 	}
 
 	
-	public void setFila(int fila) {
+	public void setFila(Integer fila) {
 		this.fila = fila;
 	}
 
 	
-	public int getButaca() {
+	public Integer getButaca() {
 		return butaca;
 	}
 
 	
-	public void setButaca(int butaca) {
+	public void setButaca(Integer butaca) {
 		this.butaca = butaca;
 	}
 
 	
-	public int getPrecio() {
+	public Integer getPrecio() {
 		return precio;
 	}
 
 	
-	public void setPrecio(int precio) {
+	public void setPrecio(Integer precio) {
 		this.precio = precio;
 	}
 	
 	
 	/*public void generarIdEntrada(Entrada entrada)
 	{
-		entrada.setIdEntrada((int) this.sector * 10000 + this.fila * 100 + this.butaca); //Falta numero de noche
+		entrada.setIdEntrada((Integer) this.sector * 10000 + this.fila * 100 + this.butaca); //Falta numero de noche
 	}*/
 
 }

@@ -32,13 +32,13 @@ public class Banda {
 	}
 
 	
-	public int valorCategoria()
+	public Integer valorCategoria()
 	{
 		return this.getCategoria().getValor();
 	}
 	
 
-	public int nroCategoria()
+	public Integer nroCategoria()
 	{
 		return this.getCategoria().getNro();		
 	}

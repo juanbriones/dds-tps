@@ -6,18 +6,18 @@ public class Noche {
 	
 	private Collection<Entrada> entradas = new ArrayList<Entrada>();
 	private Collection<Banda> bandas = new ArrayList<Banda>();
-	private int nroNoche;
-	private Long fechaInicio;
+	private Integer nroNoche;
+	private Integer fechaInicio;
 	
 	
-	public Noche(Collection<Entrada> entradas, Collection<Banda> bandas, Long fechaInicio) {
+	public Noche(Collection<Entrada> entradas, Collection<Banda> bandas, Integer fechaInicio) {
 		this.entradas = entradas;
 		this.bandas = bandas;
 		this.fechaInicio = fechaInicio;
 	}
 	
 
-	public Noche(int nroNoche, Collection<Banda> bandas, Long fechaInicio) {		
+	public Noche(Integer nroNoche, Collection<Banda> bandas, Integer fechaInicio) {		
 		this.nroNoche = nroNoche;
 		this.bandas = bandas;
 		this.fechaInicio = fechaInicio;
@@ -44,27 +44,27 @@ public class Noche {
 	}
 
     
-    public Long getFechaInicio() {
+    public Integer getFechaInicio() {
 		return fechaInicio;
 	}
 
     
-    public void setFechaInicio(Long fechaInicio) {
+    public void setFechaInicio(Integer fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
     
     
-	public int getNroNoche() {
+	public Integer getNroNoche() {
 		return nroNoche;
 	}
 
 
-	public void setNroNoche(int nroNoche) {
+	public void setNroNoche(Integer nroNoche) {
 		this.nroNoche = nroNoche;
 	}
     
 
-	public Entrada seleccionarEntrada(int idEntrada) 
+	public Entrada seleccionarEntrada(Integer idEntrada) 
 	{
 		for (Entrada entrada:entradas)
 		{
@@ -76,9 +76,9 @@ public class Noche {
 	}
 	
 
-	public int precioExtra() 
+	public Integer precioExtra() 
 	{
-		int precioExtra = this.obtenerMejorBandaCategoria().valorCategoria();
+		Integer precioExtra = this.obtenerMejorBandaCategoria().valorCategoria();
 		
 		return precioExtra;
 	}
@@ -130,7 +130,7 @@ public class Noche {
 	
     /*public void listarLocalidades()
     {
-	    int i = 0;
+	    Integer i = 0;
 	    System.out.println("Entradas disponibles: ");
 	    Collection <Entrada> entradasDisponibles = entradasDisponibles();
 	    

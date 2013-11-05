@@ -20,7 +20,7 @@ public class Cliente {
 	public Cliente() {
 	}
 	
-	public Cliente(String nombre, String apellido, int edad) {
+	public Cliente(String nombre, String apellido, Integer edad) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
@@ -50,12 +50,12 @@ public class Cliente {
 	}
     
 	
-	public int calcularDescuentoCliente(Entrada entrada) {
+	public Integer calcularDescuentoCliente(Entrada entrada) {
 		return 0;
 	}
 	
 	
-	public boolean isDama() {
+	public Boolean isDama() {
 		return false;
 	}
 

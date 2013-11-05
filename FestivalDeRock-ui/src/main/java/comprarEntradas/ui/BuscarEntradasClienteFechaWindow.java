@@ -37,10 +37,10 @@ public class BuscarEntradasClienteFechaWindow extends VentaDeEntradasWindow{
 		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("apellidoCliente");
 		
 		new Label(searchFormPanel).setText("Fecha desde").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("fechaInicio");
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("fechaDesde");
 		
-		//	new Label(searchFormPanel).setText("Fecha hasta").setForeground(Color.BLUE);
-		//	new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("");
+		new Label(searchFormPanel).setText("Fecha hasta").setForeground(Color.BLUE);
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("fechaHasta");
 	}
 	
 	//Acciones asociadas a la pantalla.

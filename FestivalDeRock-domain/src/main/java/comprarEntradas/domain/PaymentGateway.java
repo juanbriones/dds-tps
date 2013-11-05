@@ -26,7 +26,7 @@ public class PaymentGateway {
 	}
     
 	
-	public boolean procesarPago(int monto, Cliente cliente) 
+	public Boolean procesarPago(Integer monto, Cliente cliente) 
 	{
 		TarjetaCredito tarjetaSeleccionada = new TarjetaCredito();
 		

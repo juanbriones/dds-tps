@@ -4,23 +4,23 @@ import java.util.*;
 
 public class Dama extends Cliente {
 
-	private static int porcentaje = 20;
-	private static double porcentajeEntradas = 0.20;
+	private static Integer porcentaje = 20;
+	private static Double porcentajeEntradas = 0.20;
 
 	public Dama() {
 	}
 	
-	public Dama(String nombre, String apellido, int edad) {
+	public Dama(String nombre, String apellido, Integer edad) {
 		super(nombre, apellido, edad);
 	}
 	
 	@Override
-	public boolean isDama() {
+	public Boolean isDama() {
 		return true;
 	}
 		
 	@Override
-	public int calcularDescuentoCliente(Entrada entrada)
+	public Integer calcularDescuentoCliente(Entrada entrada)
 	{
 		Collection <Entrada> entradasDamas = new ArrayList<Entrada>();
 		Collection <Entrada> entradasDeLaNoche = entrada.getNoche().getEntradas();
@@ -30,7 +30,7 @@ public class Dama extends Cliente {
 			entradasDamas.add(entradaAux);
 		}
 		
-		int cantEntradasDamas = entradasDamas.size();
+		Integer cantEntradasDamas = entradasDamas.size();
 		
 		if ((cantEntradasDamas / entrada.getNoche().getEntradas().size()) < porcentajeEntradas)
 		{

@@ -1,28 +1,32 @@
 package comprarEntradas.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Home {
+public class Venta {
 	
     private Collection<Noche> noches = new ArrayList<Noche>();
     private Collection<Cliente> clientes = new ArrayList<Cliente>();
     private PaymentGateway plataformaDePago = new PaymentGateway();
     private Descuento descuento = new Descuento();
-    private long fecha;
-    
-    
-    public Home (Descuento descuento, long fecha)
-    {
-    	this.descuento = descuento;
-    	this.fecha = fecha;
+    private Integer fecha;
+       
+    public Venta() {
+    	
     }
     
-	public long getFecha() {
+    public Venta(Descuento descuento)
+    {
+    	this.descuento = descuento;
+    	this.fecha = this.obtenerFecha();
+    }
+    
+	public Integer getFecha() {
 		return fecha;
 	}
 
 
-	public void setFecha(long fecha) {
+	public void setFecha(Integer fecha) {
 		this.fecha = fecha;
 	}
 
@@ -52,9 +56,9 @@ public class Home {
 	}
 	
 
-	public int comprarEntrada(Cliente cliente, Entrada entrada, String tipoPago)
+	public Integer comprarEntrada(Cliente cliente, Entrada entrada, String tipoPago)
 	{	
-		int precioFinal = 0;	
+		Integer precioFinal = 0;	
 		
 		if (!entrada.isVendida())
 		{					
@@ -84,10 +88,10 @@ public class Home {
 	}
 	
 	
-	public int comprarCombo(Cliente cliente, ArrayList<Entrada> entradas, String tipoPago)
+	public Integer comprarCombo(Cliente cliente, ArrayList<Entrada> entradas, String tipoPago)
 	{
-		int precioCombo = 0;
-		int precioFinal = 0;
+		Integer precioCombo = 0;
+		Integer precioFinal = 0;
 		
 		Entrada entradaAux;
 		
@@ -111,10 +115,10 @@ public class Home {
 	}
 	
 	
-	public int comprarEntradaVip(Cliente cliente, Entrada entrada, String tipoPago)
+	public Integer comprarEntradaVip(Cliente cliente, Entrada entrada, String tipoPago)
 	{
-		int precioFinal = 0;
-		int recargo = 0;
+		Integer precioFinal = 0;
+		Integer recargo = 0;
 		
 		Entrada entradaAux;
 		
@@ -153,22 +157,32 @@ public class Home {
 	}
 	
 	
-	private int calcularPrecioFinal(Cliente cliente, Entrada entrada)
+	private Integer calcularPrecioFinal(Cliente cliente, Entrada entrada)
 	{
-		int precioTotal = entrada.getPrecio();
-		int descuentoTotal = descuento.calcularDescuentoTotal(cliente, entrada, fecha);
-		int precioFinal = precioTotal - descuentoTotal;
+		Integer precioTotal = entrada.getPrecio();
+		Integer descuentoTotal = descuento.calcularDescuentoTotal(cliente, entrada, fecha);
+		Integer precioFinal = precioTotal - descuentoTotal;
 		
 		return precioFinal;
 	}
 	
 	
-	private int calcularPrecioFinalCombo(int precioCombo)
+	private Integer calcularPrecioFinalCombo(Integer precioCombo)
 	{
-		int descuentoCombo = descuento.calcularDescuentoCombo(precioCombo); 
-		int precioFinal = precioCombo - descuentoCombo;
+		Integer descuentoCombo = descuento.calcularDescuentoCombo(precioCombo); 
+		Integer precioFinal = precioCombo - descuentoCombo;
 		
 		return precioFinal;
-	}	
+	}
 	
+	
+	public Integer obtenerFecha() 
+	{
+		 String DATE_FORMAT = "yyyyMMdd";
+		 SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		 Calendar calendario = Calendar.getInstance();
+		 Integer fecha = Integer.parseInt(sdf.format(calendario.getTime()));
+		 
+		 return fecha;
+	}
 }
