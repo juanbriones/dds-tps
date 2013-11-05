@@ -23,6 +23,7 @@ public class ComprarEntradaWindow extends TransactionalDialog<Entrada> {
 		entrada.setNombreCliente(null);
 		entrada.setApellidoCliente(null);
 		entrada.setEdadCliente(null);
+		entrada.setFechaInicio((long)20130509);
 	}
 	
 	@Override

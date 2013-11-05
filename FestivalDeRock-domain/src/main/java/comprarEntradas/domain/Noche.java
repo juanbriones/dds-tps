@@ -7,17 +7,17 @@ public class Noche {
 	private Collection<Entrada> entradas = new ArrayList<Entrada>();
 	private Collection<Banda> bandas = new ArrayList<Banda>();
 	private int nroNoche;
-	private int fechaInicio;
+	private Long fechaInicio;
 	
 	
-	public Noche(Collection<Entrada> entradas, Collection<Banda> bandas, int fechaInicio) {
+	public Noche(Collection<Entrada> entradas, Collection<Banda> bandas, Long fechaInicio) {
 		this.entradas = entradas;
 		this.bandas = bandas;
 		this.fechaInicio = fechaInicio;
 	}
 	
 
-	public Noche(int nroNoche, Collection<Banda> bandas, int fechaInicio) {		
+	public Noche(int nroNoche, Collection<Banda> bandas, Long fechaInicio) {		
 		this.nroNoche = nroNoche;
 		this.bandas = bandas;
 		this.fechaInicio = fechaInicio;
@@ -44,12 +44,12 @@ public class Noche {
 	}
 
     
-    public int getFechaInicio() {
+    public Long getFechaInicio() {
 		return fechaInicio;
 	}
 
     
-    public void setFechaInicio(int fechaInicio) {
+    public void setFechaInicio(Long fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
     

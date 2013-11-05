@@ -19,7 +19,7 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 
 	@Override
 	protected void createMainTemplate(Panel mainPanel) {
-		this.setTitle("Festival de Rock - Menu Principal");
+		this.setTitle("Festival de Rock");
 		this.setTaskDescription("Seleccione una opcion");
 
 		super.createMainTemplate(mainPanel);
@@ -27,6 +27,7 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 	
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
+		@SuppressWarnings("unused")
 		Panel menuFormPanel = new Panel(mainPanel);
 	}
 	
@@ -45,8 +46,8 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 			.onClick(new MessageSend(this, "abrirVentanaAnular"));
 		
 		new Button(actionsPanel)
-			.setCaption("Buscar entradas por cliente/fecha");
-			//.onClick(new MessageSend(this, ""));
+			.setCaption("Buscar entradas por cliente/fecha")
+			.onClick(new MessageSend(this, "buscarEntradasClienteFecha"));
 		
 		new Button(actionsPanel)
 			.setCaption("Buscar entradas por puesto de venta/festival");
@@ -67,5 +68,9 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 	
 	public void abrirVentanaAnular(){
 		new AnulacionDeEntradasWindow(this).open(); 
+	}
+	
+	public void buscarEntradasClienteFecha(){
+		new BuscarEntradasClienteFechaWindow(this).open();
 	}
 }

@@ -10,7 +10,7 @@ public class Entrada {
 	private boolean vendida;
 	private boolean vip;
 	private int precioBase;
-	private long fechaVenta;
+	private Long fechaVenta;
 	private Cliente cliente;
 	private Noche noche;
 	private Ubicacion ubicacion;
@@ -148,5 +148,13 @@ public class Entrada {
 	
 	public String getApellidoCliente() {
 		return this.cliente.getApellido();
+	}
+	
+	public Long getFechaInicio() {
+		return this.noche.getFechaInicio();
+	}
+	
+	public void setFechaInicio(Long fechaInicio) {
+		this.noche.setFechaInicio(fechaInicio);
 	}
 }

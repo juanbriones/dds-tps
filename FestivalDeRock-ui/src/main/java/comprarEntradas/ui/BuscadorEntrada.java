@@ -19,6 +19,7 @@ public class BuscadorEntrada implements Serializable {
     private Integer butaca;
     private String nombreCliente;
     private String apellidoCliente;
+    private Long fechaInicio;
 	private List<Entrada> resultados;
 	private Entrada entradaSeleccionada;
 
@@ -28,11 +29,11 @@ public class BuscadorEntrada implements Serializable {
 	// ********************************************************
 
 	public void searchDisponibles(){
-		this.resultados = Repositorio.getInstance().search(this.nroNoche, this.sector, this.fila, this.butaca, false, this.nombreCliente, this.apellidoCliente);
+		this.resultados = Repositorio.getInstance().searchDisponibles(this.nroNoche, this.sector, this.fila, this.butaca);
 	}
 	
 	public void searchOcupadas() {
-		this.resultados = Repositorio.getInstance().search(this.nroNoche,this.sector, this.fila, this.butaca, true, this.nombreCliente, this.apellidoCliente);
+		this.resultados = Repositorio.getInstance().searchOcupadas(this.nroNoche,this.sector, this.fila, this.butaca, true, this.nombreCliente, this.apellidoCliente, this.fechaInicio);
 	}
 
 	public void clear() {
@@ -42,6 +43,7 @@ public class BuscadorEntrada implements Serializable {
 		this.butaca = null;
 		this.nombreCliente = null;
 		this.apellidoCliente = null;
+		this.fechaInicio = null;
 	}
 
 	// ********************************************************
@@ -95,6 +97,15 @@ public class BuscadorEntrada implements Serializable {
 	public void setApellidoCliente(String apellidoCliente) {
 		this.apellidoCliente = apellidoCliente;
 	}
+	
+	public Long getFechaInicio() {
+		return this.fechaInicio;
+	}
+	
+	public void setFechaInicio(Long fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
 
 	public Entrada getEntradaSeleccionada() {
 		return this.entradaSeleccionada;

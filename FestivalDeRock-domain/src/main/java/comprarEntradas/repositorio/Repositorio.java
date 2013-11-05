@@ -62,8 +62,8 @@ public class Repositorio implements Serializable {
 		bandas2.add(banda4);
 		bandas2.add(banda5);
 
-		Noche noche1 = new Noche(1,bandas1, 20130810);
-		Noche noche2 = new Noche(2,bandas2, 20130815);
+		Noche noche1 = new Noche(1,bandas1, (long) 20130810);
+		Noche noche2 = new Noche(2,bandas2, (long) 20130815);
 		
 		noches.add(noche1);
 		noches.add(noche2);
@@ -177,7 +177,23 @@ public class Repositorio implements Serializable {
 	// ** BUSQUEDAS
 	// ********************************************************
 	
-	public List<Entrada> search(Integer nroNoche, Character sector, Integer fila, Integer butaca, boolean estasVendida, String nombreCliente, String apellidoCliente) {
+	public List<Entrada> searchDisponibles(Integer nroNoche, Character sector, Integer fila, Integer butaca) {
+		List<Entrada> resultados = new ArrayList<Entrada>();
+
+		for (Entrada entrada : this.entradas) 
+		{
+			if (match(nroNoche, entrada.getNroNoche()) 
+					&& match(sector, entrada.getSector()) 
+					&& match(fila, entrada.getFila()) 
+					&& match(butaca, entrada.getButaca())) {
+				resultados.add(entrada);
+			}
+		}
+
+		return resultados;
+	}
+	
+	public List<Entrada> searchOcupadas(Integer nroNoche, Character sector, Integer fila, Integer butaca, boolean estasVendida, String nombreCliente, String apellidoCliente, Long fechaInicio) {
 		List<Entrada> resultados = new ArrayList<Entrada>();
 
 		for (Entrada entrada : this.entradas) 
@@ -186,9 +202,10 @@ public class Repositorio implements Serializable {
 					&& match(sector, entrada.getSector()) 
 					&& match(fila, entrada.getFila()) 
 					&& match(butaca, entrada.getButaca()) 
-					&& match(estasVendida, entrada.isVendida()
+					&& match(estasVendida, entrada.isVendida())
 					&& match(nombreCliente, entrada.getNombreCliente())
-					&& match(apellidoCliente, entrada.getApellidoCliente()))) {
+					&& match(apellidoCliente, entrada.getApellidoCliente())
+					&& (fechaInicio >= entrada.getFechaInicio())) {
 				resultados.add(entrada);
 			}
 		}

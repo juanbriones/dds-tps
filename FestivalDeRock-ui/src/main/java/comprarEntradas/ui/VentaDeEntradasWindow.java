@@ -45,7 +45,7 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 	
 	@Override
 	protected void createMainTemplate(Panel mainPanel) {
-		this.setTitle("Festival de Rock - Venta de entradas");
+		this.setTitle("Festival de Rock");
 		this.setTaskDescription("Ingrese los parametros de busqueda");
 
 		super.createMainTemplate(mainPanel);
@@ -122,10 +122,10 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		.bindContentsToProperty("nroNoche");
 		
 		new Column<Entrada>(table)
-			.setTitle("Sector")
-			.setFixedSize(80)
-			.bindContentsToProperty("sector");
-		
+		.setTitle("Sector")
+		.setFixedSize(80)
+		.bindContentsToProperty("sector");
+	
 		new Column<Entrada>(table)
 		.setTitle("Fila")
 		.setFixedSize(80)
