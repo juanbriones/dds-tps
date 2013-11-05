@@ -14,6 +14,7 @@ import comprarEntradas.domain.*;
 @Observable
 public class Repositorio implements Serializable {
 	private static Repositorio instance;
+	private List<Festival> festivales = new ArrayList<Festival>();
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 	private List<Banda> bandas = new ArrayList<Banda>();
 	private List<Noche> noches = new ArrayList<Noche>();
@@ -110,6 +111,10 @@ public class Repositorio implements Serializable {
 		
 		noche1.setEntradas(entradas1);
 		noche2.setEntradas(entradas2);
+		
+		Festival festival1 = new Festival(1, noches, entradas, bandas);
+		
+		festivales.add(festival1);
 	}
 	
 	// ********************************************************
@@ -195,6 +200,24 @@ public class Repositorio implements Serializable {
 		}
 
 		return resultados;
+	}
+	
+	public List<Banda> searchBandas(String nombreBanda) {
+		List<Banda> resultadoBandas = new ArrayList<Banda>();
+		
+		for(Festival festival : this.festivales)
+		{
+			List<Banda> bandasTemp = festival.getBandas();
+			for(Banda banda : bandasTemp)
+			{
+				if(match(nombreBanda, banda.getNombre()))
+				{
+					resultadoBandas.add(banda);
+				}
+			}
+		}
+		
+		return resultadoBandas;
 	}
 
 	protected boolean match(Object expectedValue, Object realValue) {

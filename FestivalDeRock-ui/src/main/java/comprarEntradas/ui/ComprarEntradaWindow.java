@@ -5,14 +5,14 @@ import org.uqbar.arena.aop.windows.TransactionalDialog;
 import org.uqbar.arena.bindings.NotNullObservable;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
-import org.uqbar.arena.widgets.CheckBox;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.commons.utils.Home;
 
-import comprarEntradas.domain.*;
+import comprarEntradas.domain.Cliente;
+import comprarEntradas.domain.Entrada;
+import comprarEntradas.domain.Venta;
 
 
 @SuppressWarnings("serial")

@@ -1,5 +1,8 @@
 package comprarEntradas.domain;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Banda {
 	
 	private String nombre;

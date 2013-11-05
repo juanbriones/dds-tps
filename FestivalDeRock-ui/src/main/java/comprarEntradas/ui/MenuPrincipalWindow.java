@@ -54,8 +54,8 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 			//.onClick(new MessageSend(this, ""));
 		
 		new Button(actionsPanel)
-			.setCaption("Buscar bandas por nombre/festival");
-			//.onClick(new MessageSend(this, ""));
+			.setCaption("Buscar bandas por nombre/festival")
+			.onClick(new MessageSend(this, "buscarBandasPorNombre"));
 		
 		new Button(actionsPanel)
 		.setCaption("Buscar bandas por cliente/festival");
@@ -72,5 +72,11 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 	
 	public void buscarEntradasClienteFecha(){
 		new BuscarEntradasClienteFechaWindow(this).open();
+	}
+	
+	//
+	
+	public void buscarBandasPorNombre(){
+		new BuscarBandasWindow(this).open();
 	}
 }

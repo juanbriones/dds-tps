@@ -1,5 +1,7 @@
 package comprarEntradas.domain;
 
+import java.util.List;
+
 import org.uqbar.commons.utils.Observable;
 
 
