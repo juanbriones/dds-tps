@@ -41,9 +41,14 @@ public class Banda {
 	}
 	
 
-	public Integer nroCategoria()
+	public Integer getNroCategoria()
 	{
 		return this.getCategoria().getNro();		
 	}
 
+	public void setNroCategoria(Integer nro)
+	{
+		this.getCategoria().setNro(nro);
+	}
+	
 }

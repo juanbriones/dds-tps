@@ -90,7 +90,7 @@ public class Noche {
 		
 		for(Banda banda:bandas)
 		{
-			if(banda.nroCategoria() > bandaMax.nroCategoria())
+			if(banda.getNroCategoria() > bandaMax.getNroCategoria())
 			bandaMax = banda;
 		}
 		

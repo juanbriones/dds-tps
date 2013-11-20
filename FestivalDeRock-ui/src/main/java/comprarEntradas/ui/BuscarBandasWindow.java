@@ -76,7 +76,7 @@ public class BuscarBandasWindow extends SimpleWindow<BuscadorBandas>{
 		new Column<Banda>(table)
 		.setTitle("Categoria")
 		.setFixedSize(80)
-		.bindContentsToProperty("categoria.nro");
+		.bindContentsToProperty("nroCategoria");
 	}
 	
 	protected void createGridActions(Panel mainPanel) {
