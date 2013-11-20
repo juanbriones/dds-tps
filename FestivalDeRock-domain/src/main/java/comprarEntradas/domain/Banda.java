@@ -35,19 +35,16 @@ public class Banda {
 	}
 
 	
-	public Integer valorCategoria()
-	{
+	public Integer valorCategoria(){
 		return this.getCategoria().getValor();
 	}
 	
 
-	public Integer getNroCategoria()
-	{
+	public Integer getNroCategoria(){
 		return this.getCategoria().getNro();		
 	}
 
-	public void setNroCategoria(Integer nro)
-	{
+	public void setNroCategoria(Integer nro){
 		this.getCategoria().setNro(nro);
 	}
 	
