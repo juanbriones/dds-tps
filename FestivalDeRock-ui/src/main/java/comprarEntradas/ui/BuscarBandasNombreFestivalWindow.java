@@ -18,9 +18,9 @@ import comprarEntradas.domain.Banda;
 
 
 @SuppressWarnings("serial")
-public class BuscarBandasWindow extends SimpleWindow<BuscadorBandas>{
+public class BuscarBandasNombreFestivalWindow extends SimpleWindow<BuscadorBandas>{
 
-	public BuscarBandasWindow(WindowOwner owner) {
+	public BuscarBandasNombreFestivalWindow(WindowOwner owner) {
 		super(owner, new BuscadorBandas());
 		this.getModelObject().searchBandas();
 	}

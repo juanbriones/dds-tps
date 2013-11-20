@@ -74,9 +74,7 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 		new BuscarEntradasClienteFechaWindow(this).open();
 	}
 	
-	//
-	
 	public void buscarBandasPorNombre(){
-		new BuscarBandasWindow(this).open();
+		new BuscarBandasNombreFestivalWindow(this).open();
 	}
 }
