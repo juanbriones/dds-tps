@@ -202,24 +202,46 @@ public class Repositorio implements Serializable {
 		return resultados;
 	}
 	
-	public List<Banda> searchBandas(String nombreBanda) {
+	public List<Banda> searchBandas(String nombreBanda, String festivalID) {
 		List<Banda> resultadoBandas = new ArrayList<Banda>();
+		Festival festivalTemp;
 		
-		for(Festival festival : this.festivales)
-		{
-			List<Banda> bandasTemp = festival.getBandas();
-			for(Banda banda : bandasTemp)
-			{
-				if(match(nombreBanda, banda.getNombre()))
-				{
-					resultadoBandas.add(banda);
+		if (festivalID == null) {
+			for (Festival festival : this.festivales) {
+				List<Banda> bandasTemp = festival.getBandas();
+				for (Banda banda : bandasTemp) {
+					if (match(nombreBanda, banda.getNombre())) {
+						resultadoBandas.add(banda);
+					}
 				}
 			}
 		}
 		
+		else {
+			festivalTemp = this.searchFestival(festivalID);
+			if(festivalTemp != null){
+				List<Banda> bandasTemp = festivalTemp.getBandas();
+				for (Banda banda : bandasTemp) {
+					if (match(nombreBanda, banda.getNombre())) {
+						resultadoBandas.add(banda);
+					}
+				}
+			}
+		
+		}
+		
 		return resultadoBandas;
+		
 	}
 
+	private Festival searchFestival(String festivalID){
+		for(Festival festival: this.festivales){
+			if(festival.getFestivalID() == Integer.parseInt(festivalID))
+				return festival;
+		}
+		return null;
+	}
+	
 	protected boolean match(Object expectedValue, Object realValue) {
 		return expectedValue == null || realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase());
 	}

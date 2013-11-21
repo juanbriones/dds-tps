@@ -39,10 +39,13 @@ public class BuscarBandasNombreFestivalWindow extends SimpleWindow<BuscadorBanda
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		Panel searchFormPanel = new Panel(mainPanel);
-		searchFormPanel.setLayout(new ColumnLayout(1));
+		searchFormPanel.setLayout(new ColumnLayout(2));
 		
 		new Label(searchFormPanel).setText("Banda").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("nombreBanda");		
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("nombreBanda");
+		
+		new Label(searchFormPanel).setText("Festival").setForeground(Color.BLUE);
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("festivalID");
 	}
 
 	@Override

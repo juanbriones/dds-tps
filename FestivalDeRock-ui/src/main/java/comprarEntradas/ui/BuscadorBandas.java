@@ -13,6 +13,7 @@ import comprarEntradas.domain.Banda;
 public class BuscadorBandas implements Serializable {
 	
     private String nombreBanda;
+    private String festivalID;
 	private List<Banda> resultados;
 	
 	// ********************************************************
@@ -20,7 +21,7 @@ public class BuscadorBandas implements Serializable {
 	// ********************************************************
 
 	public void searchBandas(){
-		this.resultados = Repositorio.getInstance().searchBandas(this.nombreBanda);
+		this.resultados = Repositorio.getInstance().searchBandas(this.nombreBanda, this.festivalID);
 	}
 
 	public void clear() {
@@ -46,5 +47,12 @@ public class BuscadorBandas implements Serializable {
 
 	public void setResultados(List<Banda> resultados) {
 		this.resultados = resultados;
+	}
+	
+	public String getFestivalID() {
+		return festivalID;
+	}
+	public void setFestivalID(String festivalID) {
+		this.festivalID = festivalID;
 	}
 }
