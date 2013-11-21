@@ -51,15 +51,15 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 		
 		new Button(actionsPanel)
 			.setCaption("Buscar entradas por puesto de venta/festival");
-			//.onClick(new MessageSend(this, ""));
+			//.onClick(new MessageSend(this, "buscarEntradasPuestoDeVentaFestival"));
 		
 		new Button(actionsPanel)
 			.setCaption("Buscar bandas por nombre/festival")
-			.onClick(new MessageSend(this, "buscarBandasPorNombre"));
+			.onClick(new MessageSend(this, "buscarBandasNombreFestival"));
 		
 		new Button(actionsPanel)
 		.setCaption("Buscar bandas por cliente/festival");
-		//.onClick(new MessageSend(this, ""));
+		//.onClick(new MessageSend(this, "buscarBandasClienteFestival"));
 	}	
 	
 	public void abrirVentanaVender(){
@@ -74,7 +74,16 @@ public class MenuPrincipalWindow extends SimpleWindow<MenuPrincipal>{
 		new BuscarEntradasClienteFechaWindow(this).open();
 	}
 	
-	public void buscarBandasPorNombre(){
+//	public void buscarEntradasPuestoDeVentaFestival(){
+//		new BuscarEntradasPuestoDeVentaFestivalWindow(this).open();
+//	}
+	
+	public void buscarBandasNombreFestival(){
 		new BuscarBandasNombreFestivalWindow(this).open();
 	}
+	
+//	public void buscarBandasClienteFestival(){
+//		new BuscarBandasClienteFestivalWindow(this).open();
+//	}
+	
 }
