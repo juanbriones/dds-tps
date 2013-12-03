@@ -26,6 +26,7 @@ public class BuscadorBandas implements Serializable {
 
 	public void clear() {
 		this.nombreBanda = null;
+		this.festivalID = null;
 	}
 
 	// ********************************************************

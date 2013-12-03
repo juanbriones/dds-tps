@@ -1,7 +1,5 @@
 package comprarEntradas.domain;
 
-import java.util.List;
-
 import org.uqbar.commons.utils.Observable;
 
 
@@ -16,19 +14,21 @@ public class Entrada {
 	private Cliente cliente;
 	private Noche noche;
 	private Ubicacion ubicacion;
+	private PuestoDeVenta puestoDeVenta;
 	
 	
 	public Entrada() {
 		
 	}
 	
-    public Entrada(Integer idEntrada, Boolean vip, Ubicacion ubicacion, Noche noche) {
+    public Entrada(Integer idEntrada, Boolean vip, Ubicacion ubicacion, Noche noche, PuestoDeVenta puestoDeVenta) {
 		this.idEntrada = idEntrada;
 		this.vendida = false;
 		this.vip = vip;
 		this.precioBase = ubicacion.getPrecio();
 		this.noche = noche;
 		this.ubicacion = ubicacion;
+		this.puestoDeVenta = puestoDeVenta;
 	}
 	
 	public Entrada(Integer idEntrada, Boolean vip, Ubicacion ubicacion) {
@@ -158,5 +158,21 @@ public class Entrada {
 	
 	public void setFechaInicio(Integer fechaInicio) {
 		this.noche.setFechaInicio(fechaInicio);
+	}
+	
+	public PuestoDeVenta getPuestoDeVenta(){
+		return this.puestoDeVenta;
+	}
+	
+	public void setPuestoDeVenta(PuestoDeVenta puestoDeVenta){
+		this.puestoDeVenta = puestoDeVenta;
+	}
+	
+	public Integer getNumeroPuestoDeVenta(){
+		return this.puestoDeVenta.getNumero();
+	}
+	
+	public void setNumeroPuestoDeVenta(Integer numero){
+		this.puestoDeVenta.setNumero(numero);
 	}
 }

@@ -21,6 +21,8 @@ public class BuscadorEntrada implements Serializable {
     private String apellidoCliente;
     private Integer fechaDesde;
     private Integer fechaHasta;
+    private Integer numeroPuestoDeVenta;
+    private String festivalID;
 	private List<Entrada> resultados;
 	private Entrada entradaSeleccionada;
 
@@ -34,7 +36,7 @@ public class BuscadorEntrada implements Serializable {
 	}
 	
 	public void searchOcupadas() {
-		this.resultados = Repositorio.getInstance().searchOcupadas(this.nroNoche,this.sector, this.fila, this.butaca, this.nombreCliente, this.apellidoCliente, this.fechaDesde, this.fechaHasta);
+		this.resultados = Repositorio.getInstance().searchOcupadas(this.nroNoche,this.sector, this.fila, this.butaca, this.nombreCliente, this.apellidoCliente, this.fechaDesde, this.fechaHasta, this.numeroPuestoDeVenta, this.festivalID);
 	}
 
 	public void clear() {
@@ -46,6 +48,8 @@ public class BuscadorEntrada implements Serializable {
 		this.apellidoCliente = null;
 		this.fechaDesde = null;
 		this.fechaHasta = null;
+		this.numeroPuestoDeVenta = null;
+		this.festivalID = null;
 	}
 
 	// ********************************************************
@@ -114,6 +118,22 @@ public class BuscadorEntrada implements Serializable {
 	
 	public void setFechaHasta(Integer fechaHasta) {
 		this.fechaHasta = fechaHasta;
+	}
+	
+	public Integer getNumeroPuestoDeVenta() {
+		return this.numeroPuestoDeVenta;
+	}
+	
+	public void setNumeroPuestoDeVenta(Integer numero) {
+		this.numeroPuestoDeVenta = numero;
+	}
+	
+	public String getFestivalID() {
+		return festivalID;
+	}
+	
+	public void setFestivalID(String festivalID) {
+		this.festivalID = festivalID;
 	}
 
 	public Entrada getEntradaSeleccionada() {

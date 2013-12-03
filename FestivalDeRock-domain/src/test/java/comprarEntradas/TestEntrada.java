@@ -16,8 +16,8 @@ import comprarEntradas.domain.Menor18;
 import comprarEntradas.domain.Noche;
 import comprarEntradas.domain.Venta;
 import comprarEntradas.domain.Ubicacion;
+import comprarEntradas.domain.PuestoDeVenta;
 
-import java.util.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,6 +38,11 @@ public class TestEntrada {
 	private Ubicacion ubicacion2;
 	private Ubicacion ubicacion3;
 	private Ubicacion ubicacion4;
+	
+	private PuestoDeVenta puestoDeVenta1;
+	private PuestoDeVenta puestoDeVenta2;
+	private PuestoDeVenta puestoDeVenta3;
+	private PuestoDeVenta puestoDeVenta4;
 	
 	private Entrada entrada1;
 	private Entrada entrada2;
@@ -85,14 +90,14 @@ public class TestEntrada {
 		ubicacion3 = new Ubicacion('C', 3, 3, 300);
 		ubicacion4 = new Ubicacion('D', 4, 4, 400);
 		
-		entrada1 = new Entrada(1, false, ubicacion1, noche1);
-		entrada2 = new Entrada(2, false, ubicacion2, noche1);
-		entrada3 = new Entrada(3, true, ubicacion3, noche1);
-		entrada4 = new Entrada(4, true, ubicacion4, noche1);
-		entrada5 = new Entrada(5, false, ubicacion1, noche2);
-		entrada6 = new Entrada(6, false, ubicacion2, noche2);
-		entrada7 = new Entrada(7, true, ubicacion3, noche2);
-		entrada8 = new Entrada(8, true, ubicacion4, noche2);
+		entrada1 = new Entrada(1, false, ubicacion1, noche1, puestoDeVenta1);
+		entrada2 = new Entrada(2, false, ubicacion2, noche1, puestoDeVenta3);
+		entrada3 = new Entrada(3, true, ubicacion3, noche1, puestoDeVenta2);
+		entrada4 = new Entrada(4, true, ubicacion4, noche1, puestoDeVenta4);
+		entrada5 = new Entrada(5, false, ubicacion1, noche2, puestoDeVenta4);
+		entrada6 = new Entrada(6, false, ubicacion2, noche2, puestoDeVenta1);
+		entrada7 = new Entrada(7, true, ubicacion3, noche2, puestoDeVenta3);
+		entrada8 = new Entrada(8, true, ubicacion4, noche2, puestoDeVenta2);
 		
 		Collection<Entrada> entradasNoche1 = new ArrayList<Entrada>();
 		entradasNoche1.add(entrada1);

@@ -21,6 +21,7 @@ public class Repositorio implements Serializable {
 	private List<Ubicacion> ubicaciones = new ArrayList<Ubicacion>();
 	private List<Entrada> entradas = new ArrayList<Entrada>();
 	private List<Cliente> clientes = new ArrayList<Cliente>();
+	private List<PuestoDeVenta> puestosDeVenta = new ArrayList<PuestoDeVenta>();
 	
 	
 	public static synchronized Repositorio getInstance() {
@@ -79,14 +80,24 @@ public class Repositorio implements Serializable {
 		ubicaciones.add(ubicacion3);
 		ubicaciones.add(ubicacion4);
 		
-		Entrada entrada1 = new Entrada(1, false, ubicacion1, noche1);
-		Entrada entrada2 = new Entrada(2, false, ubicacion2, noche1);
-		Entrada entrada3 = new Entrada(3, true, ubicacion3, noche1);
-		Entrada entrada4 = new Entrada(4, true, ubicacion4, noche1);
-		Entrada entrada5 = new Entrada(5, false, ubicacion1, noche2);
-		Entrada entrada6 = new Entrada(6, false, ubicacion2, noche2);
-		Entrada entrada7 = new Entrada(7, true, ubicacion3, noche2);
-		Entrada entrada8 = new Entrada(8, true, ubicacion4, noche2);
+		PuestoDeVenta puestoDeVenta1 = new PuestoDeVenta(1, "direccion1");
+		PuestoDeVenta puestoDeVenta2 = new PuestoDeVenta(2, "direccion2");
+		PuestoDeVenta puestoDeVenta3 = new PuestoDeVenta(3, "direccion3");
+		PuestoDeVenta puestoDeVenta4 = new PuestoDeVenta(4, "direccion4");
+		
+		puestosDeVenta.add(puestoDeVenta1);
+		puestosDeVenta.add(puestoDeVenta2);
+		puestosDeVenta.add(puestoDeVenta3);
+		puestosDeVenta.add(puestoDeVenta4);
+		
+		Entrada entrada1 = new Entrada(1, false, ubicacion1, noche1, puestoDeVenta1);
+		Entrada entrada2 = new Entrada(2, false, ubicacion2, noche1, puestoDeVenta2);
+		Entrada entrada3 = new Entrada(3, true, ubicacion3, noche1, puestoDeVenta1);
+		Entrada entrada4 = new Entrada(4, true, ubicacion4, noche1, puestoDeVenta3);
+		Entrada entrada5 = new Entrada(5, false, ubicacion1, noche2, puestoDeVenta3);
+		Entrada entrada6 = new Entrada(6, false, ubicacion2, noche2, puestoDeVenta4);
+		Entrada entrada7 = new Entrada(7, true, ubicacion3, noche2, puestoDeVenta2);
+		Entrada entrada8 = new Entrada(8, true, ubicacion4, noche2, puestoDeVenta4);
 		
 		entradas.add(entrada1);
 		entradas.add(entrada2);
@@ -182,26 +193,55 @@ public class Repositorio implements Serializable {
 		return resultados;
 	}
 	
-	public List<Entrada> searchOcupadas(Integer nroNoche, Character sector, Integer fila, Integer butaca, String nombreCliente, String apellidoCliente, Integer fechaDesde, Integer fechaHasta) {
+	public List<Entrada> searchOcupadas(Integer nroNoche, Character sector, Integer fila, Integer butaca, String nombreCliente, String apellidoCliente, Integer fechaDesde, Integer fechaHasta, Integer numeroPuestoDeVenta, String festivalID) {
 		List<Entrada> resultados = new ArrayList<Entrada>();
-
-		for (Entrada entrada : this.entradas) 
-		{
-			if (match(nroNoche, entrada.getNroNoche()) 
-					&& match(sector, entrada.getSector()) 
-					&& match(fila, entrada.getFila()) 
-					&& match(butaca, entrada.getButaca()) 
-					&& match(true, entrada.isVendida())
-					&& match(nombreCliente, entrada.getNombreCliente())
-					&& match(apellidoCliente, entrada.getApellidoCliente())
-					&& (this.matchFechas(entrada.getFechaInicio(), fechaDesde, fechaHasta))) {
-				resultados.add(entrada);
+		Festival festivalTemp;
+		
+		if (festivalID == null) {
+			for (Festival festival : this.festivales) {
+				List<Entrada> entradasTemp = festival.getEntradas();
+				for (Entrada entrada : entradasTemp) {
+						if (match(nroNoche, entrada.getNroNoche()) 
+							&& match(sector, entrada.getSector()) 
+							&& match(fila, entrada.getFila()) 
+							&& match(butaca, entrada.getButaca()) 
+							&& match(true, entrada.isVendida())
+							&& match(nombreCliente, entrada.getNombreCliente())
+							&& match(apellidoCliente, entrada.getApellidoCliente())
+							&& (this.matchFechas(entrada.getFechaInicio(), fechaDesde, fechaHasta))
+							&& match(numeroPuestoDeVenta, entrada.getNumeroPuestoDeVenta())) {
+								resultados.add(entrada);
+							}
+				}
+				
 			}
-		}
 
+		}
+		
+		else {
+			festivalTemp = this.searchFestival(festivalID);
+			if(festivalTemp != null){
+				List<Entrada> entradasTemp = festivalTemp.getEntradas();
+				for (Entrada entrada : entradasTemp){
+					if (match(nroNoche, entrada.getNroNoche()) 
+							&& match(sector, entrada.getSector()) 
+							&& match(fila, entrada.getFila()) 
+							&& match(butaca, entrada.getButaca()) 
+							&& match(true, entrada.isVendida())
+							&& match(nombreCliente, entrada.getNombreCliente())
+							&& match(apellidoCliente, entrada.getApellidoCliente())
+							&& (this.matchFechas(entrada.getFechaInicio(), fechaDesde, fechaHasta))
+							&& match(numeroPuestoDeVenta, entrada.getNumeroPuestoDeVenta())) {
+								resultados.add(entrada);
+							}
+				}
+			}
+		
+		}
+		
 		return resultados;
-	}
-	
+	}	
+		
 	public List<Banda> searchBandas(String nombreBanda, String festivalID) {
 		List<Banda> resultadoBandas = new ArrayList<Banda>();
 		Festival festivalTemp;
