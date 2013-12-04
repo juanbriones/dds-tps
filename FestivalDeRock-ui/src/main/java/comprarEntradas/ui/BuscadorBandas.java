@@ -15,6 +15,8 @@ public class BuscadorBandas implements Serializable {
     private String nombreBanda;
     private String festivalID;
 	private List<Banda> resultados;
+	private String nombreCliente;
+	private String apellidoCliente;
 	
 	// ********************************************************
 	// ** ACCIONES
@@ -22,6 +24,11 @@ public class BuscadorBandas implements Serializable {
 
 	public void searchBandas(){
 		this.resultados = Repositorio.getInstance().searchBandas(this.nombreBanda, this.festivalID);
+	}
+	
+	public void searchBandasCliente(){
+		this.resultados = null;
+		this.resultados = Repositorio.getInstance().searchBandasCliente(this.nombreCliente, this.apellidoCliente, this.festivalID);
 	}
 
 	public void clear() {
@@ -55,5 +62,21 @@ public class BuscadorBandas implements Serializable {
 	}
 	public void setFestivalID(String festivalID) {
 		this.festivalID = festivalID;
+	}
+	
+	public String getNombreCliente() {
+		return nombreCliente;
+	}
+	
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
+	}
+	
+	public String getApellidoCliente() {
+		return apellidoCliente;
+	}
+	
+	public void setApellidoCliente(String apellidoCliente) {
+		this.apellidoCliente = apellidoCliente;
 	}
 }

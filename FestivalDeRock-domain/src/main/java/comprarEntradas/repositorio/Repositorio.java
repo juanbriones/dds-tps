@@ -282,6 +282,23 @@ public class Repositorio implements Serializable {
 		return null;
 	}
 	
+	public List<Banda> searchBandasCliente(String nombreCliente, String apellidoCliente, String festivalID){
+		List<Entrada> resultadoEntradas = new ArrayList<Entrada>();
+		List<Banda> resultadoBandas = new ArrayList<Banda>();
+		
+		resultadoEntradas = searchOcupadas(null, null, null, null, nombreCliente, apellidoCliente, null, null, null, festivalID);
+			
+		for(Entrada entrada : resultadoEntradas) {
+			if(match(nombreCliente, entrada.getNombreCliente()) 
+					&& match(apellidoCliente, entrada.getApellidoCliente())
+					&& match(true, entrada.isVendida())) {
+				resultadoBandas.addAll(entrada.getNoche().getBandas());
+			}
+		}
+	
+		return resultadoBandas;
+	}
+	
 	protected boolean match(Object expectedValue, Object realValue) {
 		return expectedValue == null || realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase());
 	}
