@@ -4,11 +4,14 @@ import java.awt.Color;
 
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.bindings.NotNullObservable;
+import org.uqbar.arena.bindings.ObservableProperty;
+import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
@@ -16,14 +19,20 @@ import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.utils.Transactional;
+import org.uqbar.lacar.ui.model.ListBuilder;
+import org.uqbar.lacar.ui.model.bindings.Binding;
 
 import comprarEntradas.domain.Entrada;
+import comprarEntradas.domain.Ubicacion;
+import comprarEntradas.repositorio.*;
 
 
 //Ventana de búsqueda, selección y venta de entradas.
 
 @SuppressWarnings("serial")
 @Observable
+@Transactional
 public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 
 	public VentaDeEntradasWindow(WindowOwner owner) {
@@ -63,13 +72,29 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("nroNoche");
 
 		new Label(searchFormPanel).setText("Sector").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("sector");
+//		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("sector");
+		
+		Selector<Entrada> sector = new Selector<Entrada>(searchFormPanel);
+		sector.bindValueToProperty("sector");
+		Binding<ListBuilder<Entrada>> sectorBinding = sector.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+		sectorBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "sector"));
+		
 
 		new Label(searchFormPanel).setText("Fila").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("fila");
+//		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("fila");
+		
+		Selector<Ubicacion> fila = new Selector<Ubicacion>(searchFormPanel);
+		fila.bindValueToProperty("fila");
+		Binding<ListBuilder<Ubicacion>> filaBinding = fila.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+		filaBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "fila"));
 		
 		new Label(searchFormPanel).setText("Butaca").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("butaca");
+//		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("butaca");
+		
+		Selector<Ubicacion> butaca = new Selector<Ubicacion>(searchFormPanel);
+		butaca.bindValueToProperty("butaca");
+		Binding<ListBuilder<Ubicacion>> butacaBinding = butaca.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+		butacaBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "butaca"));
 	}
 	
 	//Acciones asociadas a la pantalla.

@@ -6,12 +6,14 @@ import java.util.Collection;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.utils.Transactional;
 
 import comprarEntradas.domain.*;
 	
 
 @SuppressWarnings("serial")
 @Observable
+@Transactional
 public class Repositorio implements Serializable {
 	private static Repositorio instance;
 	private List<Festival> festivales = new ArrayList<Festival>();
@@ -171,6 +173,14 @@ public class Repositorio implements Serializable {
 	public void delete(Cliente cliente) {
 		this.clientes.remove(cliente);
 	}
+	
+	public List<Ubicacion> getUbicaciones() {
+		return this.ubicaciones;
+	}
+
+	public void setUbicaciones(List<Ubicacion> ubicaciones) {
+		this.ubicaciones = ubicaciones;
+	}
 
 	// ********************************************************
 	// ** BUSQUEDAS
@@ -286,7 +296,11 @@ public class Repositorio implements Serializable {
 		List<Entrada> resultadoEntradas = new ArrayList<Entrada>();
 		List<Banda> resultadoBandas = new ArrayList<Banda>();
 		
-		resultadoEntradas = searchOcupadas(null, null, null, null, nombreCliente, apellidoCliente, null, null, null, festivalID);
+		if((nombreCliente == null) && (apellidoCliente == null) && (festivalID == null)) {
+			return this.searchBandas(null, null);
+		}
+		
+		resultadoEntradas = this.searchOcupadas(null, null, null, null, nombreCliente, apellidoCliente, null, null, null, festivalID);
 			
 		for(Entrada entrada : resultadoEntradas) {
 			if(match(nombreCliente, entrada.getNombreCliente()) 

@@ -1,5 +1,10 @@
 package comprarEntradas.domain;
 
+import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.utils.Transactional;
+
+@Observable
+@Transactional
 public class Ubicacion {
 	
 	private Character sector;

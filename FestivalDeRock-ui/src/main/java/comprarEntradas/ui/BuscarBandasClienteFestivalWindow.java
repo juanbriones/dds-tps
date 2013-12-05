@@ -21,7 +21,7 @@ public class BuscarBandasClienteFestivalWindow extends SimpleWindow<BuscadorBand
 
 	public BuscarBandasClienteFestivalWindow(WindowOwner owner) {
 		super(owner, new BuscadorBandas());
-		this.getModelObject();
+		this.getModelObject().searchBandas();
 	}
 	
 	@Override

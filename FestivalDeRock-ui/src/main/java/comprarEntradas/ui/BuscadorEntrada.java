@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.utils.Transactional;
 
 import comprarEntradas.repositorio.Repositorio;
 import comprarEntradas.domain.Entrada;
 
-
 @SuppressWarnings("serial")
 @Observable
+@Transactional
 public class BuscadorEntrada implements Serializable {
 	
 	private Integer nroNoche;

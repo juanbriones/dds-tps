@@ -33,6 +33,8 @@ public class BuscadorBandas implements Serializable {
 
 	public void clear() {
 		this.nombreBanda = null;
+		this.nombreCliente = null;
+		this.apellidoCliente = null;
 		this.festivalID = null;
 	}
 
