@@ -72,29 +72,29 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("nroNoche");
 
 		new Label(searchFormPanel).setText("Sector").setForeground(Color.BLUE);
-//		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("sector");
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("sector");
 		
-		Selector<Entrada> sector = new Selector<Entrada>(searchFormPanel);
-		sector.bindValueToProperty("sector");
-		Binding<ListBuilder<Entrada>> sectorBinding = sector.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
-		sectorBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "sector"));
+//		Selector<Entrada> sector = new Selector<Entrada>(searchFormPanel);
+//		sector.bindValueToProperty("sector");
+//		Binding<ListBuilder<Entrada>> sectorBinding = sector.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+//		sectorBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "sector"));
 		
 
 		new Label(searchFormPanel).setText("Fila").setForeground(Color.BLUE);
-//		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("fila");
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("fila");
 		
-		Selector<Ubicacion> fila = new Selector<Ubicacion>(searchFormPanel);
-		fila.bindValueToProperty("fila");
-		Binding<ListBuilder<Ubicacion>> filaBinding = fila.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
-		filaBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "fila"));
+//		Selector<Ubicacion> fila = new Selector<Ubicacion>(searchFormPanel);
+//		fila.bindValueToProperty("fila");
+//		Binding<ListBuilder<Ubicacion>> filaBinding = fila.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+//		filaBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "fila"));
 		
 		new Label(searchFormPanel).setText("Butaca").setForeground(Color.BLUE);
-//		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("butaca");
+		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("butaca");
 		
-		Selector<Ubicacion> butaca = new Selector<Ubicacion>(searchFormPanel);
-		butaca.bindValueToProperty("butaca");
-		Binding<ListBuilder<Ubicacion>> butacaBinding = butaca.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
-		butacaBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "butaca"));
+//		Selector<Ubicacion> butaca = new Selector<Ubicacion>(searchFormPanel);
+//		butaca.bindValueToProperty("butaca");
+//		Binding<ListBuilder<Ubicacion>> butacaBinding = butaca.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+//		butacaBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "butaca"));
 	}
 	
 	//Acciones asociadas a la pantalla.
