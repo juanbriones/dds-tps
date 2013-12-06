@@ -181,6 +181,14 @@ public class Repositorio implements Serializable {
 	public void setUbicaciones(List<Ubicacion> ubicaciones) {
 		this.ubicaciones = ubicaciones;
 	}
+	
+	public List<Noche> getNoches() {
+		return this.noches;
+	}
+
+	public void setNoches(List<Noche> noches) {
+		this.noches = noches;
+	}
 
 	// ********************************************************
 	// ** BUSQUEDAS

@@ -1,7 +1,10 @@
 package comprarEntradas.domain;
 
 import java.util.*;
+import org.uqbar.commons.utils.Observable;
 
+
+@Observable
 public class Noche {
 	
 	private Collection<Entrada> entradas = new ArrayList<Entrada>();
