@@ -8,7 +8,16 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 import org.uqbar.commons.utils.Transactional;
 
-import comprarEntradas.domain.*;
+import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+
+import comprarEntradas.domain.Banda;
+import comprarEntradas.domain.Categoria;
+import comprarEntradas.domain.Cliente;
+import comprarEntradas.domain.Entrada;
+import comprarEntradas.domain.Festival;
+import comprarEntradas.domain.Noche;
+import comprarEntradas.domain.PuestoDeVenta;
+import comprarEntradas.domain.Ubicacion;
 	
 
 @SuppressWarnings("serial")
@@ -67,7 +76,7 @@ public class Repositorio implements Serializable {
 		bandas2.add(banda5);
 
 		Noche noche1 = new Noche(1,bandas1, 20140110);
-		Noche noche2 = new Noche(2,bandas2, 20140115);
+		Noche noche2 = new Noche(2,bandas2, 20140111);
 		
 		noches.add(noche1);
 		noches.add(noche2);
@@ -134,38 +143,6 @@ public class Repositorio implements Serializable {
 	// ** ALTAS Y BAJAS
 	// ********************************************************
 	
-	public void create(Banda banda) {
-		this.bandas.add(banda);
-	}
-
-	public void delete(Banda banda) {
-		this.bandas.remove(banda);
-	}
-	
-	public void create(Noche noche) {
-		this.noches.add(noche);
-	}
-
-	public void delete(Noche noche) {
-		this.noches.remove(noche);
-	}
-	
-	public void create(Ubicacion ubicacion) {
-		this.ubicaciones.add(ubicacion);
-	}
-
-	public void delete(Ubicacion ubicacion) {
-		this.ubicaciones.remove(ubicacion);
-	}
-	
-	public void create(Entrada entrada) {
-		this.entradas.add(entrada);
-	}
-
-	public void delete(Entrada entrada) {
-		this.entradas.remove(entrada);
-	}
-	
 	public void create(Cliente cliente) {
 		this.clientes.add(cliente);
 	}
@@ -194,12 +171,24 @@ public class Repositorio implements Serializable {
 	// ** BUSQUEDAS
 	// ********************************************************
 	
-	public List<Entrada> searchDisponibles(Integer nroNoche, Character sector, Integer fila, Integer butaca) {
+	public List<Entrada> searchDisponibles(Noche noche, Ubicacion ubicacion) {
 		List<Entrada> resultados = new ArrayList<Entrada>();
-
+		Integer nroNoche = null;
+		Character sector = null;
+		Integer fila = null;
+		Integer butaca = null;
+		
+		if(noche != null)
+			nroNoche = noche.getNroNoche();
+		if(ubicacion != null) {
+			sector = ubicacion.getSector();
+			fila = ubicacion.getFila();
+			butaca = ubicacion.getButaca();
+		}
+			
 		for (Entrada entrada : this.entradas) 
 		{
-			if (match(nroNoche, entrada.getNroNoche()) 
+			if(match(nroNoche, entrada.getNroNoche()) 
 					&& match(sector, entrada.getSector()) 
 					&& match(fila, entrada.getFila()) 
 					&& match(butaca, entrada.getButaca())
@@ -211,9 +200,22 @@ public class Repositorio implements Serializable {
 		return resultados;
 	}
 	
-	public List<Entrada> searchOcupadas(Integer nroNoche, Character sector, Integer fila, Integer butaca, String nombreCliente, String apellidoCliente, Integer fechaDesde, Integer fechaHasta, Integer numeroPuestoDeVenta, String festivalID) {
+	public List<Entrada> searchOcupadas(Noche noche, Ubicacion ubicacion, String nombreCliente, String apellidoCliente, Integer fechaDesde, Integer fechaHasta, Integer numeroPuestoDeVenta, String festivalID) {
+		
 		List<Entrada> resultados = new ArrayList<Entrada>();
 		Festival festivalTemp;
+		Integer nroNoche = null;
+		Character sector = null;
+		Integer fila = null;
+		Integer butaca = null;
+		
+		if(noche != null)
+			nroNoche = noche.getNroNoche();
+		if(ubicacion != null) {
+			sector = ubicacion.getSector();
+			fila = ubicacion.getFila();
+			butaca = ubicacion.getButaca();
+		}
 		
 		if (festivalID == null) {
 			for (Festival festival : this.festivales) {
@@ -241,10 +243,11 @@ public class Repositorio implements Serializable {
 			if(festivalTemp != null){
 				List<Entrada> entradasTemp = festivalTemp.getEntradas();
 				for (Entrada entrada : entradasTemp){
-					if (match(nroNoche, entrada.getNroNoche()) 
-							&& match(sector, entrada.getSector()) 
-							&& match(fila, entrada.getFila()) 
-							&& match(butaca, entrada.getButaca()) 
+					if (noche != null && ubicacion != null
+							&& match(noche.getNroNoche(), entrada.getNroNoche()) 
+							&& match(ubicacion.getSector(), entrada.getSector()) 
+							&& match(ubicacion.getFila(), entrada.getFila()) 
+							&& match(ubicacion.getButaca(), entrada.getButaca()) 
 							&& match(true, entrada.isVendida())
 							&& match(nombreCliente, entrada.getNombreCliente())
 							&& match(apellidoCliente, entrada.getApellidoCliente())
@@ -308,7 +311,7 @@ public class Repositorio implements Serializable {
 			return this.searchBandas(null, null);
 		}
 		
-		resultadoEntradas = this.searchOcupadas(null, null, null, null, nombreCliente, apellidoCliente, null, null, null, festivalID);
+		resultadoEntradas = this.searchOcupadas(null, null, nombreCliente, apellidoCliente, null, null, null, festivalID);
 			
 		for(Entrada entrada : resultadoEntradas) {
 			if(match(nombreCliente, entrada.getNombreCliente()) 

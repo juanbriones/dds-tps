@@ -6,18 +6,20 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 import org.uqbar.commons.utils.Transactional;
 
-import comprarEntradas.repositorio.Repositorio;
 import comprarEntradas.domain.Entrada;
+import comprarEntradas.domain.Noche;
+import comprarEntradas.domain.Ubicacion;
+import comprarEntradas.repositorio.Repositorio;
 
 @SuppressWarnings("serial")
 @Observable
 @Transactional
 public class BuscadorEntrada implements Serializable {
 	
-	private Integer nroNoche;
-	private Character sector;
-    private Integer fila;
-    private Integer butaca;
+	private Noche nocheSeleccionada;
+	private List<Noche> noches;
+	private Ubicacion ubicacionSeleccionada;
+	private List<Ubicacion> ubicaciones;
     private String nombreCliente;
     private String apellidoCliente;
     private Integer fechaDesde;
@@ -33,18 +35,16 @@ public class BuscadorEntrada implements Serializable {
 	// ********************************************************
 
 	public void searchDisponibles(){
-		this.resultados = Repositorio.getInstance().searchDisponibles(this.nroNoche, this.sector, this.fila, this.butaca);
+		this.resultados = Repositorio.getInstance().searchDisponibles(this.nocheSeleccionada, this.ubicacionSeleccionada);
 	}
 	
 	public void searchOcupadas() {
-		this.resultados = Repositorio.getInstance().searchOcupadas(this.nroNoche,this.sector, this.fila, this.butaca, this.nombreCliente, this.apellidoCliente, this.fechaDesde, this.fechaHasta, this.numeroPuestoDeVenta, this.festivalID);
+		this.resultados = Repositorio.getInstance().searchOcupadas(this.nocheSeleccionada, this.ubicacionSeleccionada, this.nombreCliente, this.apellidoCliente, this.fechaDesde, this.fechaHasta, this.numeroPuestoDeVenta, this.festivalID);
 	}
 
 	public void clear() {
-		this.nroNoche = null;
-		this.sector = null;
-		this.fila = null;
-		this.butaca = null;
+		this.nocheSeleccionada = null;
+		this.ubicacionSeleccionada = null;
 		this.nombreCliente = null;
 		this.apellidoCliente = null;
 		this.fechaDesde = null;
@@ -57,36 +57,28 @@ public class BuscadorEntrada implements Serializable {
 	// ** ACCESSORS
 	// ********************************************************
 
-	public Integer getNroNoche() {
-		return this.nroNoche;
+	public Noche getNocheSeleccionada() {
+		return nocheSeleccionada;
 	}
 
-	public void setNroNoche(Integer nroNoche) {
-		this.nroNoche = nroNoche;
+	public void setNocheSeleccionada(Noche nocheSeleccionada) {
+		this.nocheSeleccionada = nocheSeleccionada;
+	}
+
+	public List<Noche> getNoches() {
+		return Repositorio.getInstance().getNoches();
 	}
 	
-	public Character getSector() {
-		return this.sector;
-	}
-
-	public void setSector(Character sector) {
-		this.sector = sector;
-	}
-
-	public Integer getFila() {
-		return this.fila;
-	}
-
-	public void setFila(Integer fila) {
-		this.fila = fila;
+	public Ubicacion getUbicacionSeleccionada(){
+		return ubicacionSeleccionada;
 	}
 	
-	public Integer getButaca() {
-		return this.butaca;
+	public void setUbicacionSeleccionada(Ubicacion ubicacionSeleccionada){
+		this.ubicacionSeleccionada = ubicacionSeleccionada;
 	}
-
-	public void setButaca(Integer butaca) {
-		this.butaca = butaca;
+	
+	public List<Ubicacion> getUbicaciones(){
+		return Repositorio.getInstance().getUbicaciones();
 	}
 	
 	public String getNombreCliente() {

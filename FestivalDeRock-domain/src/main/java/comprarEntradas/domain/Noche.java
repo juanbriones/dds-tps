@@ -129,7 +129,6 @@ public class Noche {
 		
 		return null;
 	}
-
 	
     /*public void listarLocalidades()
     {

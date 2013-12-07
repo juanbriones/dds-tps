@@ -4,18 +4,26 @@ import java.awt.Color;
 
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.bindings.NotNullObservable;
+import org.uqbar.arena.bindings.ObservableProperty;
+import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.utils.Observable;
+import org.uqbar.lacar.ui.model.ListBuilder;
+import org.uqbar.lacar.ui.model.bindings.Binding;
 
 import comprarEntradas.domain.Entrada;
+import comprarEntradas.domain.Noche;
+import comprarEntradas.domain.Ubicacion;
+import comprarEntradas.repositorio.Repositorio;
 
 
 //Ventana de búsqueda, selección y anulación de entradas.
@@ -37,16 +45,32 @@ public class AnulacionDeEntradasWindow extends VentaDeEntradasWindow{
 		searchFormPanel.setLayout(new ColumnLayout(8));
 		
 		new Label(searchFormPanel).setText("Noche").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("nroNoche");
-
+		Selector<Entrada> nroNoche = new Selector<Entrada>(searchFormPanel);
+		nroNoche.allowNull(false);
+		nroNoche.bindValueToProperty("nocheSeleccionada");
+		Binding<ListBuilder<Entrada>> nroNocheBinding = nroNoche.bindItems(new ObservableProperty(this.getModel(), "noches"));
+		nroNocheBinding.setAdapter(new PropertyAdapter(Noche.class, "nroNoche"));
+		
 		new Label(searchFormPanel).setText("Sector").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("sector");
-
+		Selector<Entrada> sector = new Selector<Entrada>(searchFormPanel);
+		sector.allowNull(false);
+		sector.bindValueToProperty("ubicacionSeleccionada");
+		Binding<ListBuilder<Entrada>> sectorBinding = sector.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+		sectorBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "sector"));
+		
 		new Label(searchFormPanel).setText("Fila").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("fila");
+		Selector<Ubicacion> fila = new Selector<Ubicacion>(searchFormPanel);
+		fila.allowNull(false);
+		fila.bindValueToProperty("ubicacionSeleccionada");
+		Binding<ListBuilder<Ubicacion>> filaBinding = fila.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+		filaBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "fila"));
 		
 		new Label(searchFormPanel).setText("Butaca").setForeground(Color.BLUE);
-		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("butaca");
+		Selector<Ubicacion> butaca = new Selector<Ubicacion>(searchFormPanel);
+		butaca.allowNull(false);
+		butaca.bindValueToProperty("ubicacionSeleccionada");
+		Binding<ListBuilder<Ubicacion>> butacaBinding = butaca.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+		butacaBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "butaca"));
 		
 		new Label(searchFormPanel).setText("Nombre").setForeground(Color.BLUE);
 		new TextBox(searchFormPanel).setWidth(50).bindValueToProperty("nombreCliente");
