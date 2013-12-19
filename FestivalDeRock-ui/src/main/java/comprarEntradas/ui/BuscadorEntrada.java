@@ -6,6 +6,7 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 import org.uqbar.commons.utils.Transactional;
 
+import comprarEntradas.domain.Cliente;
 import comprarEntradas.domain.Entrada;
 import comprarEntradas.domain.Noche;
 import comprarEntradas.domain.Ubicacion;
@@ -39,7 +40,10 @@ public class BuscadorEntrada implements Serializable {
 	}
 	
 	public void searchOcupadas() {
-		this.resultados = Repositorio.getInstance().searchOcupadas(this.nocheSeleccionada, this.ubicacionSeleccionada, this.nombreCliente, this.apellidoCliente, this.fechaDesde, this.fechaHasta, this.numeroPuestoDeVenta, this.festivalID);
+		Cliente cliente = new Cliente();
+		cliente.setNombre(nombreCliente);
+		cliente.setApellido(apellidoCliente);
+		this.resultados = Repositorio.getInstance().searchOcupadas(this.nocheSeleccionada, this.ubicacionSeleccionada, cliente, this.fechaDesde, this.fechaHasta, this.numeroPuestoDeVenta, this.festivalID);
 	}
 
 	public void clear() {

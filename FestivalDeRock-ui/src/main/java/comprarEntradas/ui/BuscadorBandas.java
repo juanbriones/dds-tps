@@ -7,6 +7,7 @@ import org.uqbar.commons.utils.Observable;
 
 import comprarEntradas.repositorio.Repositorio;
 import comprarEntradas.domain.Banda;
+import comprarEntradas.domain.Cliente;
 
 @SuppressWarnings("serial")
 @Observable
@@ -27,8 +28,11 @@ public class BuscadorBandas implements Serializable {
 	}
 	
 	public void searchBandasCliente(){
+		Cliente cliente = new Cliente();
+		cliente.setNombre(nombreCliente);
+		cliente.setApellido(apellidoCliente);
 		this.resultados = null;
-		this.resultados = Repositorio.getInstance().searchBandasCliente(this.nombreCliente, this.apellidoCliente, this.festivalID);
+		this.resultados = Repositorio.getInstance().searchBandasCliente(cliente, this.festivalID);
 	}
 
 	public void clear() {

@@ -8,8 +8,6 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 import org.uqbar.commons.utils.Transactional;
 
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
-
 import comprarEntradas.domain.Banda;
 import comprarEntradas.domain.Categoria;
 import comprarEntradas.domain.Cliente;
@@ -173,41 +171,62 @@ public class Repositorio implements Serializable {
 	
 	public List<Entrada> searchDisponibles(Noche noche, Ubicacion ubicacion) {
 		List<Entrada> resultados = new ArrayList<Entrada>();
-		Integer nroNoche = null;
-		Character sector = null;
-		Integer fila = null;
-		Integer butaca = null;
-		
-		if(noche != null)
-			nroNoche = noche.getNroNoche();
-		if(ubicacion != null) {
-			sector = ubicacion.getSector();
-			fila = ubicacion.getFila();
-			butaca = ubicacion.getButaca();
-		}
 			
 		for (Entrada entrada : this.entradas) 
 		{
-			if(match(nroNoche, entrada.getNroNoche()) 
-					&& match(sector, entrada.getSector()) 
-					&& match(fila, entrada.getFila()) 
-					&& match(butaca, entrada.getButaca())
-					&& match(false, entrada.isVendida())) {
-				resultados.add(entrada);
+			if(!entrada.isVendida()
+				&& (this.matchDatos(entrada, noche, ubicacion, null, null))) {
+					resultados.add(entrada);
 			}
 		}
 
 		return resultados;
 	}
 	
-	public List<Entrada> searchOcupadas(Noche noche, Ubicacion ubicacion, String nombreCliente, String apellidoCliente, Integer fechaDesde, Integer fechaHasta, Integer numeroPuestoDeVenta, String festivalID) {
+	public List<Entrada> searchOcupadas(Noche noche, Ubicacion ubicacion, Cliente cliente, Integer fechaDesde, Integer fechaHasta, Integer numeroPuestoDeVenta, String festivalID) {
 		
 		List<Entrada> resultados = new ArrayList<Entrada>();
+		List<Entrada> entradasTemp = new ArrayList<Entrada>();
 		Festival festivalTemp;
+		String nombreCliente = null;
+		String apellidoCliente = null;
+		
+		if(cliente != null){
+			nombreCliente = cliente.getNombre();
+			apellidoCliente = cliente.getApellido();
+		}
+		
+		if (festivalID == null) {
+			for (Festival festival : this.festivales) {
+				entradasTemp = festival.getEntradas();
+			}	
+		}					
+		else {
+				festivalTemp = this.searchFestival(festivalID);
+				if(festivalTemp != null)
+					entradasTemp = festivalTemp.getEntradas();
+		}
+						
+		for (Entrada entrada : entradasTemp) {
+				if (entrada.isVendida()
+					&& match(nombreCliente, entrada.getNombreCliente())
+					&& match(apellidoCliente, entrada.getApellidoCliente())
+					&& match(numeroPuestoDeVenta, entrada.getNumeroPuestoDeVenta())
+					&& this.matchDatos(entrada, noche, ubicacion, fechaDesde, fechaHasta)) {
+						resultados.add(entrada);
+				}
+		}
+				
+		
+	return resultados;
+}	
+		
+	private boolean matchDatos(Entrada entrada, Noche noche, Ubicacion ubicacion, Integer fechaDesde, Integer fechaHasta) {
 		Integer nroNoche = null;
 		Character sector = null;
 		Integer fila = null;
 		Integer butaca = null;
+		
 		
 		if(noche != null)
 			nroNoche = noche.getNroNoche();
@@ -217,82 +236,34 @@ public class Repositorio implements Serializable {
 			butaca = ubicacion.getButaca();
 		}
 		
-		if (festivalID == null) {
-			for (Festival festival : this.festivales) {
-				List<Entrada> entradasTemp = festival.getEntradas();
-				for (Entrada entrada : entradasTemp) {
-						if (match(nroNoche, entrada.getNroNoche()) 
-							&& match(sector, entrada.getSector()) 
-							&& match(fila, entrada.getFila()) 
-							&& match(butaca, entrada.getButaca()) 
-							&& match(true, entrada.isVendida())
-							&& match(nombreCliente, entrada.getNombreCliente())
-							&& match(apellidoCliente, entrada.getApellidoCliente())
-							&& (this.matchFechas(entrada.getFechaInicio(), fechaDesde, fechaHasta))
-							&& match(numeroPuestoDeVenta, entrada.getNumeroPuestoDeVenta())) {
-								resultados.add(entrada);
-							}
-				}
-				
-			}
-
-		}
-		
-		else {
-			festivalTemp = this.searchFestival(festivalID);
-			if(festivalTemp != null){
-				List<Entrada> entradasTemp = festivalTemp.getEntradas();
-				for (Entrada entrada : entradasTemp){
-					if (noche != null && ubicacion != null
-							&& match(noche.getNroNoche(), entrada.getNroNoche()) 
-							&& match(ubicacion.getSector(), entrada.getSector()) 
-							&& match(ubicacion.getFila(), entrada.getFila()) 
-							&& match(ubicacion.getButaca(), entrada.getButaca()) 
-							&& match(true, entrada.isVendida())
-							&& match(nombreCliente, entrada.getNombreCliente())
-							&& match(apellidoCliente, entrada.getApellidoCliente())
-							&& (this.matchFechas(entrada.getFechaInicio(), fechaDesde, fechaHasta))
-							&& match(numeroPuestoDeVenta, entrada.getNumeroPuestoDeVenta())) {
-								resultados.add(entrada);
-							}
-				}
-			}
-		
-		}
-		
-		return resultados;
-	}	
-		
+		return (match(nroNoche, entrada.getNroNoche()) 
+				&& match(sector, entrada.getSector()) 
+				&& match(fila, entrada.getFila()) 
+				&& match(butaca, entrada.getButaca())
+				&& (this.matchFechas(entrada.getFechaInicio(), fechaDesde, fechaHasta)));	
+	}
+	
 	public List<Banda> searchBandas(String nombreBanda, String festivalID) {
 		List<Banda> resultadoBandas = new ArrayList<Banda>();
+		List<Banda> bandasTemp = new ArrayList<Banda>();
 		Festival festivalTemp;
 		
 		if (festivalID == null) {
-			for (Festival festival : this.festivales) {
-				List<Banda> bandasTemp = festival.getBandas();
-				for (Banda banda : bandasTemp) {
-					if (match(nombreBanda, banda.getNombre())) {
-						resultadoBandas.add(banda);
-					}
-				}
-			}
+			for (Festival festival : this.festivales)
+				bandasTemp = festival.getBandas();
 		}
-		
-		else {
+		else{
 			festivalTemp = this.searchFestival(festivalID);
-			if(festivalTemp != null){
-				List<Banda> bandasTemp = festivalTemp.getBandas();
-				for (Banda banda : bandasTemp) {
-					if (match(nombreBanda, banda.getNombre())) {
-						resultadoBandas.add(banda);
-					}
-				}
-			}
-		
+			if(festivalTemp != null)
+				bandasTemp = festivalTemp.getBandas();
+		}
+				
+		for (Banda banda : bandasTemp) {
+			if (match(nombreBanda, banda.getNombre()))
+				resultadoBandas.add(banda);					
 		}
 		
-		return resultadoBandas;
-		
+		return resultadoBandas;		
 	}
 
 	private Festival searchFestival(String festivalID){
@@ -303,23 +274,25 @@ public class Repositorio implements Serializable {
 		return null;
 	}
 	
-	public List<Banda> searchBandasCliente(String nombreCliente, String apellidoCliente, String festivalID){
+	public List<Banda> searchBandasCliente(Cliente cliente, String festivalID){
 		List<Entrada> resultadoEntradas = new ArrayList<Entrada>();
 		List<Banda> resultadoBandas = new ArrayList<Banda>();
+		String nombreCliente = null;
+		String apellidoCliente = null;
+	
+		if(cliente != null){
+			nombreCliente = cliente.getNombre();
+			apellidoCliente = cliente.getApellido();
+		}
 		
 		if((nombreCliente == null) && (apellidoCliente == null) && (festivalID == null)) {
 			return this.searchBandas(null, null);
 		}
 		
-		resultadoEntradas = this.searchOcupadas(null, null, nombreCliente, apellidoCliente, null, null, null, festivalID);
+		resultadoEntradas = this.searchOcupadas(null, null, cliente, null, null, null, festivalID);
 			
-		for(Entrada entrada : resultadoEntradas) {
-			if(match(nombreCliente, entrada.getNombreCliente()) 
-					&& match(apellidoCliente, entrada.getApellidoCliente())
-					&& match(true, entrada.isVendida())) {
-				resultadoBandas.addAll(entrada.getNoche().getBandas());
-			}
-		}
+		for(Entrada entrada : resultadoEntradas)
+			resultadoBandas.addAll(entrada.getNoche().getBandas());
 	
 		return resultadoBandas;
 	}
