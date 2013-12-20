@@ -76,10 +76,10 @@ public class VentaDeEntradasWindow extends SimpleWindow<BuscadorEntrada> {
 		nroNocheBinding.setAdapter(new PropertyAdapter(Noche.class, "nroNoche"));
 		
 		new Label(searchFormPanel).setText("Sector").setForeground(Color.BLUE);
-		Selector<Entrada> sector = new Selector<Entrada>(searchFormPanel);
+		Selector<Ubicacion> sector = new Selector<Ubicacion>(searchFormPanel);
 		sector.allowNull(false);
 		sector.bindValueToProperty("ubicacionSeleccionada");
-		Binding<ListBuilder<Entrada>> sectorBinding = sector.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
+		Binding<ListBuilder<Ubicacion>> sectorBinding = sector.bindItems(new ObservableProperty(Repositorio.getInstance(), "ubicaciones"));
 		sectorBinding.setAdapter(new PropertyAdapter(Ubicacion.class, "sector"));
 		
 		new Label(searchFormPanel).setText("Fila").setForeground(Color.BLUE);
