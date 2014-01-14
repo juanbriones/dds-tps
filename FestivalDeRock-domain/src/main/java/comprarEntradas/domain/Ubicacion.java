@@ -11,6 +11,7 @@ public class Ubicacion {
     private Integer fila;
     private Integer butaca;
     private Integer precio;
+    private String sfb;
 
     
 	public Ubicacion(Character sector, Integer fila, Integer butaca, Integer precio) {
@@ -18,6 +19,7 @@ public class Ubicacion {
 		this.fila = fila;
 		this.butaca = butaca;
 		this.precio = precio;
+		this.sfb = Character.toString(this.sector) + " - " + Integer.toString(this.fila) + " - " + Integer.toString(this.butaca);
 	}
     
 	
@@ -59,11 +61,14 @@ public class Ubicacion {
 	public void setPrecio(Integer precio) {
 		this.precio = precio;
 	}
-	
-	
-	/*public void generarIdEntrada(Entrada entrada)
-	{
-		entrada.setIdEntrada((Integer) this.sector * 10000 + this.fila * 100 + this.butaca); //Falta numero de noche
-	}*/
 
+
+	public String getSfb() {
+		return sfb;
+	}
+
+
+	public void setSfb(String sfb) {
+		this.sfb = sfb;
+	}
 }
